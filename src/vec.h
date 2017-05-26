@@ -9,6 +9,10 @@ struct vec{
 	vec(){
 		for(int i=0; i<2; i++) a[i] = 0.0;
 	}
+	vec(double m, double n){
+		a[0] = m;
+		a[1] = n;
+	}
 	double norm(){
 		return sqrt(a[0]*a[0] + a[1]*a[1]);
 	}
@@ -30,7 +34,9 @@ struct vec{
 		for(int i=0; i<2; i++) b[i] = c*a[i];
 		return vec(b);
 	}
-	
+	void print(){
+		std::cout<<a[0]<<" "<<a[1]<<std::endl;
+	}
 	
 };
 #endif

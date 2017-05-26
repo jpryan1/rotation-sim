@@ -1,7 +1,7 @@
 
 #include "animation.h"
 
-extern std::mutex lock;
+std::mutex lock;
 
 
 
@@ -137,7 +137,7 @@ void Animation::generateBuffers(){
 	glBindVertexArray(s_VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, s_VBO);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_EBO);
 	
 
 	// Position attribute
@@ -205,7 +205,7 @@ void Animation::setProjectionMatrices(){
 	glm::mat4 projection;
 	
 	//View is at z = +8
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -6.0f));
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -50.0f));
 //	view = glm::rotate(view, (float) -(M_PI/8.0), glm::vec3(0.0f, 1.0f, 0.0f));
 	//Projection has 45 degree FoV, aspect ratio given by the window's, and
 	//records only those objects within 0.1f and 100.0f of the "camera"
@@ -228,6 +228,9 @@ void Animation::setProjectionMatrices(){
 void Animation::draw(){
 	//This loop runs until the window is closed. When this happens, this function reaches the last line, which results in the
 	//entire program ending
+	
+	
+	while(notReady);
 	
 	while (!glfwWindowShouldClose(window) )
 	{
@@ -258,7 +261,7 @@ void Animation::draw(){
 void Animation::drawShapes(){
 	
 	
-	glUniform4f(colorLoc, 1, 0, 0, 1.0f);
+	glUniform4f(colorLoc, 0.75f, 0.5f, 0.25f, 1.0f);
 	glBindVertexArray(s_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, s_VBO);
 	lock.lock();

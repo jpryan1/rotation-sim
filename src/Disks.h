@@ -25,6 +25,7 @@ class Disks{
 		static double boundrad;
 		static double swirl_angle;
 		static double mu;
+		static double wmu;
 		static Animation* animation;
 		Disks(){}
 		~Disks(){
@@ -52,9 +53,18 @@ class Disks{
 		void processNormalCollision(Collision& collision);
 		void processWallCollision(Collision& collision);
 		void swirl();
+	
+	
+	double getAngVel();
+	vec centerOfMass();
+	double squareSum();
+	
+	
+	
+		Disk* disks;
 	private:
 		int num_of_disks;
-		Disk* disks;
+		
 		double boundpos[2];
 		double boundvel[2];
 		double swirl_time;

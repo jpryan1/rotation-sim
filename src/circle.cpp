@@ -8,15 +8,15 @@ Circle::Circle(double radius){
 	for(int i=0; i<3; i++) vertices.push_back(0);
 	
 	for(int i=0; i<30; i++){
-		vertices.push_back( cos((PI*i) / 15));
-		vertices.push_back( sin((PI*i) / 15));
+		vertices.push_back( cos((PI*i) / 15.0));
+		vertices.push_back( sin((PI*i) / 15.0));
 		vertices.push_back( 0);
 	}
 	
-	for(int i=0; i<30; i++){
+	for(int i=1; i<29; i++){
 		indices.push_back(0);
+		indices.push_back(i);
 		indices.push_back(i+1);
-		indices.push_back(i+2);
 	}
 	
 	glBufferData(GL_ARRAY_BUFFER, vertices.size()*sizeof(GLfloat), &vertices[0], GL_STATIC_DRAW);
@@ -25,8 +25,7 @@ Circle::Circle(double radius){
 }
 
 
-void Circle::draw(double a, double b){
-	
+void Circle::draw(GLfloat a, GLfloat b){
 	glm::mat4 transform;
 	transform = glm::translate(transform, glm::vec3(a,b,0));
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(transform));

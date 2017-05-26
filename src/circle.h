@@ -1,7 +1,7 @@
 #ifndef  _CIRCLE_H_    /* only process this file once */
 #define  _CIRCLE_H_
 #define GLM_FORCE_RADIANS 1
-
+#include <iostream>
 #include <vector>
 #include <cmath>
 #include "glew.h"
@@ -24,7 +24,7 @@ public:
 	static GLuint modelLoc;
 	Circle(){}
 	Circle(double r);
-	void draw(double a, double b);
+	void draw(GLfloat a, GLfloat b);
 private:
 	double radius;
 };

@@ -6,6 +6,7 @@
 #include <iostream>
 #include "circle.h"
 #include <mutex>
+#include <atomic>
 #include "disk.h"
 
 class Animation{
@@ -24,8 +25,9 @@ class Animation{
 		void setProjectionMatrices();
 		void draw();
 		void drawShapes();
-	
 		void setDisks(Disk* d);
+		std::atomic<bool> notReady;
+	
 	private:
 		GLuint s_VBO, s_VAO, s_EBO, shaderProgram, modelLoc, colorLoc, viewLoc;
 		int width, height;
@@ -33,6 +35,7 @@ class Animation{
 		Circle circle;
 		Disk* disks;
 		int num_of_disks;
-	
+		double t;
+	double time;
 };
 #endif
