@@ -10,11 +10,12 @@
 #include "vec.h"
 #include "type.h"
 #include "disk.h"
+#include "stats.h"
 #include "animation.h"
+#include "Collision.h"
 
 
 class Collision;
-
 
 
 class Disks{
@@ -55,6 +56,7 @@ class Disks{
 		void swirl();
 	
 	
+	void printStats();
 	double getAngVel();
 	vec centerOfMass();
 	double squareSum();
@@ -64,7 +66,8 @@ class Disks{
 		Disk* disks;
 	private:
 		int num_of_disks;
-		
+	
+		Stats stats;
 		double boundpos[2];
 		double boundvel[2];
 		double swirl_time;

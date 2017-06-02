@@ -63,6 +63,7 @@ void Animation::initialize(){
 	glViewport(0, 0, width, height);
 	
 	glEnable(GL_DEPTH_TEST);
+	
 }
 
 //The following function can be simplified with the introduction of a shader.cpp file
@@ -127,12 +128,12 @@ void Animation::generateBuffers(){
 	//	EBO (element buffer object) contains the indices of the vertices (aka the order to draw triangles)
 	//	VAO (vertex attribute object) contains the alignment info of the data in the VBO
 	glGenVertexArrays(1, &s_VAO);
-	//glGenVertexArrays(1, &e_VAO);
 	glGenBuffers(1, &s_VBO);
 	glGenBuffers(1, &s_EBO);
-	//glGenBuffers(1, &e_VBO);
-	//glGenBuffers(1, &e_EBO);
-	
+	glGenVertexArrays(1, &b_VAO);
+	glGenBuffers(1, &b_VBO);
+	glGenBuffers(1, &b_EBO);
+
 	// Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
 	glBindVertexArray(s_VAO);
 
@@ -141,38 +142,35 @@ void Animation::generateBuffers(){
 	
 
 	// Position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
-//	// Normal attribute
-//	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-//	glEnableVertexAttribArray(1);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//Unbind VAO
+	glBindVertexArray(0);
+	
+	glBindVertexArray(b_VAO);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, b_VBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, b_EBO);
+	
+	
+	// Position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
 	
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//Unbind VAO
 	glBindVertexArray(0);
 	
-//	
-//	glBindVertexArray(e_VAO);
-//	
-//	glBindBuffer(GL_ARRAY_BUFFER, e_VBO);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, e_EBO);
-//
-//	
-//	
-//	// Position attribute
-//	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
-//	glEnableVertexAttribArray(0);
-//	// Normal attribute
-//	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-//	glEnableVertexAttribArray(1);
-//	
-//	
-//	glBindBuffer(GL_ARRAY_BUFFER, 0);
-//	//Unbind VAO
-//	glBindVertexArray(0);
+	
+
 	
 	
 	
+	
+	
+
 }
 
 void Animation::generateShapes(){
@@ -181,18 +179,20 @@ void Animation::generateShapes(){
 	glBindBuffer(GL_ARRAY_BUFFER, s_VBO);
 	
 	circle = Circle(1);
+	//bound = Circle(9.1);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//Unbind
 	glBindVertexArray(0);
 	
 	
-//	glBindVertexArray(e_VAO);
-//	glBindBuffer(GL_ARRAY_BUFFER, e_VBO);
-//	
-//	edge = Edge(0.05, 12);
-//	glBindBuffer(GL_ARRAY_BUFFER, 0);
-//	//Unbind
-//	glBindVertexArray(0);
+	glBindVertexArray(b_VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, b_VBO);
+	
+	bound = Circle(9.1);
+	//bound = Circle(9.1);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//Unbind
+	glBindVertexArray(0);
 	
 }
 
@@ -228,9 +228,8 @@ void Animation::setProjectionMatrices(){
 void Animation::draw(){
 	//This loop runs until the window is closed. When this happens, this function reaches the last line, which results in the
 	//entire program ending
-	
-	
 	while(notReady);
+	
 	
 	while (!glfwWindowShouldClose(window) )
 	{
@@ -240,7 +239,7 @@ void Animation::draw(){
 		//Set background color
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+		
 		//Draw!
 		drawShapes();
 		
@@ -261,12 +260,22 @@ void Animation::draw(){
 void Animation::drawShapes(){
 	
 	
-	glUniform4f(colorLoc, 0.75f, 0.5f, 0.25f, 1.0f);
+	
+	glBindVertexArray(b_VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, b_VBO);
+	lock.lock();
+	glUniform4f(colorLoc, 0.8f, 0.8f, 0.8f, 1.0f);
+	bound.draw(boundpos[0], boundpos[1], 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	
+	
+	
 	glBindVertexArray(s_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, s_VBO);
-	lock.lock();
+	glUniform4f(colorLoc, 0.75f, 0.5f, 0.25f, 1.0f);
 	for(int i=0; i<num_of_disks; i++){
-		circle.draw(disks[i].pos[0], disks[i].pos[1]);
+		circle.draw(disks[i].pos[0], disks[i].pos[1], 0.01);
 	}
 	lock.unlock();
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -276,14 +285,15 @@ void Animation::drawShapes(){
 
 
 
-
-
-
-void Animation::setDisks(Disk* d){
+void Animation::setDisks(Disk* d, double* b){
 	lock.lock();
-	memcpy(disks,d, sizeof(Disk)*num_of_disks);
+	memcpy(disks, d, sizeof(Disk)*num_of_disks);
+	boundpos[0] =b[0];
+	boundpos[1] = b[1];
 	lock.unlock();
+	usleep(200);
 }
+
 
 
 

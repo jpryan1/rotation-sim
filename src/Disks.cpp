@@ -1,22 +1,21 @@
 #include "Disks.h"
-#include "Collision.h"
 
 double Disks::swirl_interval = 1;
 double Disks::boundrad = 9.1;
 double Disks::swirl_angle = 3.14159265359 / 6;
+
 double Disks::mu = 1;
-double Disks::wmu = 0;
+double Disks::wmu = 0.1;
 Animation* Disks::animation;
 
 void Disks::initialize(int N){
 	this->num_of_disks = N;
-	
 	disks = new Disk[N];
 	
 	
 	this->boundpos[0] = 0;
 	this->boundpos[1] = 0;
-	this->boundvel[0] = 0.5; //CONSTANT HERE
+	this->boundvel[0] = 0.5;//0.5; //CONSTANT HERE
 	this->boundvel[1] = 0;
 	this->swirl_time=0;
 	
@@ -34,9 +33,11 @@ void Disks::initialize(int N){
 	}
 	input.close();
 	if(animation){
-		animation->setDisks(disks);
-		animation->notReady = false;
+		animation->setDisks(disks, boundpos);
 	}
+	
+	stats.initialize(N);
+	stats.update(disks, boundpos, -1);
 }
 
 
@@ -50,9 +51,13 @@ void Disks::updatePositions(double time){
 			
 		}
 	}
+	
 	if(animation){
-		animation->setDisks(disks);
+		animation->setDisks(disks, boundpos);
+		animation->notReady = false;
 	}
+	stats.update(disks, boundpos, time);
+
 }
 
 
@@ -388,7 +393,9 @@ double Disks::squareSum(){
 	
 }
 
-
+void Disks::printStats(){
+	stats.print();
+}
 
 
 
