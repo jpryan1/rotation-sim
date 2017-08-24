@@ -3,6 +3,7 @@
 #define  _ANIMATION_H_
 
 #define GLEW_STATIC
+#define DELTA_T 0.0000003
 #include <iostream>
 #include "circle.h"
 #include <mutex>
@@ -18,6 +19,7 @@ class Animation{
 			num_of_disks = n;
 			disks = new Disk[n];
 			notReady = true;
+			drawing = false;
 			boundpos[0] = 0;
 			boundpos[1] = 0;
 		}
@@ -29,9 +31,10 @@ class Animation{
 		void setProjectionMatrices();
 		void draw();
 		void drawShapes();
-		void setDisks(Disk* d, double* b);
-
+		void setDisks(Disk* d, double* b, double* v);
+		void moveDisks(double time);
 		std::atomic<bool> notReady;
+	std::atomic<bool> drawing;
 	
 	private:
 		GLuint s_VBO, s_VAO, s_EBO, shaderProgram, modelLoc, colorLoc, viewLoc;
@@ -42,6 +45,7 @@ class Animation{
 		Circle bound;
 		Disk* disks;
 	double boundpos[2];
+	double boundvel[2];
 		int num_of_disks;
 	
 	

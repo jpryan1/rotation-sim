@@ -260,7 +260,6 @@ void Animation::draw(){
 void Animation::drawShapes(){
 	
 	
-	
 	glBindVertexArray(b_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, b_VBO);
 	lock.lock();
@@ -280,18 +279,39 @@ void Animation::drawShapes(){
 	lock.unlock();
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
-
+	
 }
 
 
 
-void Animation::setDisks(Disk* d, double* b){
+void Animation::setDisks(Disk* d, double* b, double* v){
 	lock.lock();
 	memcpy(disks, d, sizeof(Disk)*num_of_disks);
-	boundpos[0] =b[0];
+	boundpos[0] = b[0];
 	boundpos[1] = b[1];
+	boundvel[0] = v[0];
+	boundvel[1] = v[1];
 	lock.unlock();
-	usleep(200);
+	
+}
+
+void Animation::moveDisks(double time){
+	double start = 0;
+	while(start<time){
+		lock.lock();
+		for(int i=0; i<num_of_disks; i++){
+			for(int j=0; j<2; j++){ disks[i].pos[j] += DELTA_T*disks[i].vel[j];
+			
+			}
+		}
+		for(int j=0; j<2; j++) boundpos[j] += DELTA_T*boundvel[j];
+		lock.unlock();
+		start+= DELTA_T;
+	}
+	if(fabs(boundvel[1])<1e-8){
+		usleep(4000);
+	}
+	
 }
 
 

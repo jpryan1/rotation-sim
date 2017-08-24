@@ -1,43 +1,40 @@
 #include "Disks.h"
 
-double Disks::swirl_interval = 1;
-double Disks::boundrad = 9.1;
-double Disks::swirl_angle = 3.14159265359 / 6;
 
-double Disks::mu = 1;
-double Disks::wmu = 0.1;
 Animation* Disks::animation;
+
+
 
 void Disks::initialize(int N){
 	this->num_of_disks = N;
 	disks = new Disk[N];
-	
-	
+	//Initialize boundary variables
 	this->boundpos[0] = 0;
 	this->boundpos[1] = 0;
-	this->boundvel[0] = 0.5;//0.5; //CONSTANT HERE
+	this->boundvel[0] = 0.5;
 	this->boundvel[1] = 0;
 	this->swirl_time=0;
 	
-	
-	
+	//Get disks coordinates from input file
 	std::ifstream input("input.txt", std::ifstream::in);
 	for(int i=0; i<N; i++){
 		input >> disks[i].pos[0] >> disks[i].pos[1] >> disks[i].vel[0] >> disks[i].vel[1];
+		disks[i].ang = 0;
+		disks[i].ang_vel = 0;
 		
-		for(int j=0; j<2; j++){
-			disks[i].ang[j] = 0;
-			disks[i].ang_vel = 0;
-		}
 		
 	}
 	input.close();
+	
+	
 	if(animation){
-		animation->setDisks(disks, boundpos);
+		animation->setDisks(disks, boundpos, boundvel);
+		animation->notReady = false;
 	}
 	
+	
 	stats.initialize(N);
-	stats.update(disks, boundpos, -1);
+	stats.update(disks, boundpos,boundvel, -1);
 }
 
 
@@ -47,16 +44,18 @@ void Disks::updatePositions(double time){
 	for(int i=0; i<num_of_disks; i++){
 		for(int j=0; j<2; j++){
 			disks[i].pos[j] += time*disks[i].vel[j];
-			disks[i].ang[j] += time*disks[i].ang_vel;
 			
 		}
+		disks[i].ang += time*disks[i].ang_vel;
+		
 	}
 	
 	if(animation){
-		animation->setDisks(disks, boundpos);
-		animation->notReady = false;
+		animation->moveDisks(time);
+		animation->setDisks(disks, boundpos, boundvel);
+		
 	}
-	stats.update(disks, boundpos, time);
+	stats.update(disks, boundpos,boundvel, time);
 
 }
 
@@ -199,16 +198,11 @@ void Disks::processCollision(Collision& collision){
 	switch(collision.getType()){
 		case NORMAL:
 			processNormalCollision(collision);
-//			std::cout<<"Bonk: s1vel "<<collision.disks[0]->vel[0]<<" "<<collision.disks[0]->vel[1]<<
-//							   "\ns2vel "<<collision.disks[1]->vel[0]<<" "<<collision.disks[1]->vel[1]<<
-//			"\ns2angvel "<<collision.disks[0]->ang_vel<<"\n"<<std::endl;
-//			
+	
 			break;
 		case WALL:
 			processWallCollision(collision);
-//			std::cout<<"Bonk: s1vel "<<collision.disks[0]->vel[0]<<" "<<collision.disks[0]->vel[1]<<
-//			"\ns2angvel "<<collision.disks[0]->ang_vel<<"\n"<<std::endl;
-//			
+		
 			break;
 		case SWIRL:
 			swirl();
@@ -353,20 +347,36 @@ void Disks::swirl(){
 
 
 
+double Disks::squareSum(){
+	
+	double sum = 0;
+	
+	for(int i=0; i<num_of_disks; i++){
+		double a = disks[i].pos[0] - boundpos[0];
+		double b = disks[i].pos[1] - boundpos[1];
+		
+		sum += a*a + b*b;
+	}
+	return sum;
+}
 
 
 
 double Disks::getAngVel(){
-	vec c = centerOfMass();
+	
+	
 	double sum = squareSum();
 	double angvel = 0;
+	
 	for(int i=0; i<num_of_disks; i++) {
-		double a = disks[i].pos[0] - c.a[0];
-		double b = disks[i].pos[1] - c.a[1];
-		angvel += a * disks[i].vel[1] - b * disks[i].vel[0];
+		double a = disks[i].pos[0] - boundpos[0];
+		double b = disks[i].pos[1] - boundpos[1];
+		angvel += a * (disks[i].vel[1]-boundvel[1]) - b * (disks[i].vel[0]-boundvel[0]);
 	}
 	return angvel / sum;
+	
 }
+
 vec Disks::centerOfMass(){
 	double a = 0;
 	double b = 0;
@@ -378,23 +388,26 @@ vec Disks::centerOfMass(){
 	b = b / num_of_disks;
 	return vec(a,b);
 }
-double Disks::squareSum(){
-	double sum = 0;
-	vec CoM = centerOfMass();
-	for(int i=0; i<num_of_disks; i++){
-		double a = disks[i].pos[0] - CoM.a[0];
-		double b = disks[i].pos[1] - CoM.a[1];
-		
-		sum += a*a + b*b;
+
+
+double Disks::getAngVelVariance(double mean){
+	vec c = centerOfMass();
+	double sum = squareSum();
+	double angvelvar = 0;
+	for(int i=0; i<num_of_disks; i++) {
+		double a = disks[i].pos[0] - c.a[0];
+		double b = disks[i].pos[1] - c.a[1];
+		double dist = pow(a,2) + pow(b,2);
+		double cross = a * disks[i].vel[1] - b * disks[i].vel[0];
+		angvelvar += pow(cross,2)/dist;
 	}
-	return sum;
-	
-	
-	
+	return sqrt(  (angvelvar / sum) - pow(mean,2) );
 }
 
 void Disks::printStats(){
-	stats.print();
+	
+	
+	//Insert your favorite print function here.
 }
 
 
