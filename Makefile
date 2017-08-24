@@ -1,5 +1,6 @@
 AFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 LFLAGS = -std=c++11 `pkg-config --libs lib/glfw3.pc` 
+N=55
 
 
 build/Collision.o: src/Collision.cpp 
@@ -8,13 +9,13 @@ build/Collision.o: src/Collision.cpp
 build/circle.o: src/circle.cpp src/circle.h
 	g++ -std=c++11 -O2 -c -o build/circle.o src/circle.cpp
 
-build/Disks.o: src/Disks.cpp src/animation.h src/stats.h src/Collision.h
+build/Disks.o: src/Disks.cpp src/animation.h src/stats.h src/Collision.h src/animation.cpp src/stats.cpp src/Collision.cpp
 	g++ -std=c++11 -O2 -c -o build/Disks.o src/Disks.cpp
 
 build/animation.o: src/animation.cpp src/animation.h src/circle.h
 	g++ -std=c++11 -O2 -c -o build/animation.o src/animation.cpp
 
-build/RotationSim.o: src/RotationSim.cpp src/animation.h src/Disks.h src/Collision.h
+build/RotationSim.o: src/RotationSim.cpp src/animation.h src/Disks.h src/Collision.h src/animation.cpp src/Collision.cpp src/Disks.cpp
 	g++ -std=c++11 -O2 -c -o build/RotationSim.o src/RotationSim.cpp
 
 build/stats.o: src/stats.cpp  src/stats.h
@@ -28,6 +29,6 @@ compile: build/Collision.o build/circle.o build/Disks.o build/animation.o build/
 test:
 	./RotationSim t
 animate:
-	./RotationSim a
+	./RotationSim a ${N}
 run:
-	./RotationSim r
+	./RotationSim r ${N}
