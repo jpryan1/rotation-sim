@@ -134,6 +134,11 @@ void Animation::generateBuffers(){
 	glGenBuffers(1, &b_VBO);
 	glGenBuffers(1, &b_EBO);
 
+	
+	glGenVertexArrays(1, &m_VAO);
+	glGenBuffers(1, &m_VBO);
+	glGenBuffers(1, &m_EBO);
+
 	// Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
 	glBindVertexArray(s_VAO);
 
@@ -164,6 +169,21 @@ void Animation::generateBuffers(){
 	glBindVertexArray(0);
 	
 	
+	
+	
+	glBindVertexArray(m_VAO);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+	
+	
+	// Position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//Unbind VAO
+	glBindVertexArray(0);
 
 	
 	
@@ -194,6 +214,17 @@ void Animation::generateShapes(){
 	//Unbind
 	glBindVertexArray(0);
 	
+	
+	glBindVertexArray(m_VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+	
+	m_ball = Circle(1);
+	//bound = Circle(9.1);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//Unbind
+	glBindVertexArray(0);
+	
+
 }
 
 void Animation::setProjectionMatrices(){
@@ -205,11 +236,11 @@ void Animation::setProjectionMatrices(){
 	glm::mat4 projection;
 	
 	//View is at z = +8
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -50.0f));
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -25.0f));
 //	view = glm::rotate(view, (float) -(M_PI/8.0), glm::vec3(0.0f, 1.0f, 0.0f));
 	//Projection has 45 degree FoV, aspect ratio given by the window's, and
 	//records only those objects within 0.1f and 100.0f of the "camera"
-	projection = glm::perspective(glm::radians(45.0f), (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 100.0f);
+	projection = glm::perspective(glm::radians(45.0f), (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 200.0f);
 	
 	// Get the locations of the shader's uniforms
 	modelLoc = glGetUniformLocation(shaderProgram, "model");
@@ -237,7 +268,8 @@ void Animation::draw(){
 		glfwPollEvents();
 
 		//Set background color
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		//glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		//Draw!
@@ -264,18 +296,65 @@ void Animation::drawShapes(){
 	glBindBuffer(GL_ARRAY_BUFFER, b_VBO);
 	lock.lock();
 	glUniform4f(colorLoc, 0.8f, 0.8f, 0.8f, 1.0f);
-	bound.draw(boundpos[0], boundpos[1], 0);
+	if(M_FRAME){
+		bound.draw(0, 0, 0);
+		bound.draw(boundpos[0]-55,boundpos[1]-40,-100);
+		
+	}else{
+		bound.draw(boundpos[0], boundpos[1], 0);
+	}
+	
+	
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 	
 	
 	
+	
+	
+	glBindVertexArray(m_VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+	glUniform4f(colorLoc, 1.0f, 0.2f, 0.2f, 1.0f);
+	
+	
+	if(M_FRAME){
+		m_ball.draw(boundpos[0] + 9.1*cos((M_PI/6.0)*total_time + (M_PI/2.0)) - 55,
+					boundpos[1] + 9.1*sin((M_PI/6.0)*total_time + (M_PI/2.0)) - 40, -99.8);
+		m_ball.draw(0, 9.1, 0.01);
+	}
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	
+	
+
+	
 	glBindVertexArray(s_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, s_VBO);
 	glUniform4f(colorLoc, 0.75f, 0.5f, 0.25f, 1.0f);
-	for(int i=0; i<num_of_disks; i++){
-		circle.draw(disks[i].pos[0], disks[i].pos[1], 0.01);
+	if(M_FRAME){
+		
+		for(int i=0; i<num_of_disks; i++){
+		
+			double x = disks[i].pos[0] - boundpos[0];
+			double y = disks[i].pos[1] - boundpos[1];
+			double nx = cos(total_time*(M_PI/6.0)) * x + sin(total_time*(M_PI/6.0)) * y;
+			double ny = -sin(total_time*(M_PI/6.0)) * x + cos(total_time*(M_PI/6.0)) * y;
+//		
+		circle.draw(nx,
+					 ny,
+					 0.01 );
+			
+			circle.draw(disks[i].pos[0]-55,disks[i].pos[1]-40,-99.9);
+		
+		}
 	}
+	else{
+		for(int i=0; i< num_of_disks; i++){
+			circle.draw(disks[i].pos[0], disks[i].pos[1], 0.01);
+		}
+	}
+	
+
 	lock.unlock();
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
@@ -297,8 +376,10 @@ void Animation::setDisks(Disk* d, double* b, double* v){
 
 void Animation::moveDisks(double time){
 	double start = 0;
+	double next_time = total_time  + time;
 	while(start<time){
 		lock.lock();
+		total_time = DELTA_T +total_time;
 		for(int i=0; i<num_of_disks; i++){
 			for(int j=0; j<2; j++){ disks[i].pos[j] += DELTA_T*disks[i].vel[j];
 			
@@ -308,9 +389,7 @@ void Animation::moveDisks(double time){
 		lock.unlock();
 		start+= DELTA_T;
 	}
-	if(fabs(boundvel[1])<1e-8){
-		usleep(4000);
-	}
+	total_time = next_time;
 	
 }
 

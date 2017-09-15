@@ -40,6 +40,9 @@ class Collision{
 	
 		Type getType();
 	
+	//returns value between 0 and 2pi, corresponding to loc
+	double getWallHitPosition();
+	
 	
 		Disk* disks[2];
 	

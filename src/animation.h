@@ -11,6 +11,8 @@
 #include <unistd.h>
 #include "disk.h"
 
+#define M_FRAME 1
+
 class Animation{
 	public:
 	
@@ -22,6 +24,8 @@ class Animation{
 			drawing = false;
 			boundpos[0] = 0;
 			boundpos[1] = 0;
+			total_time = 0;
+			
 		}
 		void initialize();
 		void setup();
@@ -37,12 +41,15 @@ class Animation{
 	std::atomic<bool> drawing;
 	
 	private:
+	double total_time;
 		GLuint s_VBO, s_VAO, s_EBO, shaderProgram, modelLoc, colorLoc, viewLoc;
 		GLuint b_VBO, b_VAO, b_EBO;
+	GLuint m_VBO, m_VAO, m_EBO;
 		int width, height;
 		GLFWwindow* window;
 		Circle circle;
 		Circle bound;
+	Circle m_ball;
 		Disk* disks;
 	double boundpos[2];
 	double boundvel[2];

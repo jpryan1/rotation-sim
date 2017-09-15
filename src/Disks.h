@@ -31,9 +31,9 @@ class Disks{
 		//the boundary traces a dodecagonal path
 		const double swirl_angle = 3.14159265359 / 6;
 		//Marble/Marble friction parameter
-		const double mu = 1;
+	const double mu = 1;
 		//Marble/Wall friction parameter
-		const double wmu =0.1;
+	const double wmu = 0.1;
 	
 	
 	//Set by the main function in RotationSim.cpp depending on whether we're animating
@@ -84,6 +84,8 @@ class Disks{
 	void printStats();
 	double getAngVel();
 	vec centerOfMass();
+	vec centerOfMassVel();
+
 	double squareSum();
 	double getAngVelVariance(double mean);
 	

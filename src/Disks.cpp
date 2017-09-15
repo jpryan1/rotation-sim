@@ -19,6 +19,7 @@ void Disks::initialize(int N){
 	std::ifstream input("input.txt", std::ifstream::in);
 	for(int i=0; i<N; i++){
 		input >> disks[i].pos[0] >> disks[i].pos[1] >> disks[i].vel[0] >> disks[i].vel[1];
+		disks[i].ID = i;
 		disks[i].ang = 0;
 		disks[i].ang_vel = 0;
 		
@@ -195,19 +196,35 @@ void Disks::addCollision(std::vector<Collision>& currentCollisions, Collision& c
 
 void Disks::processCollision(Collision& collision){
 	//Obligation here is just to change the trajectories of the affected disks
+	double angvel_before, angvel_after;
+	int which;
+	
+	angvel_before = getAngVel();
+	
 	switch(collision.getType()){
 		case NORMAL:
+			
+			which = 0;
 			processNormalCollision(collision);
 	
 			break;
+			
 		case WALL:
+			which = 1;
 			processWallCollision(collision);
-		
+			
 			break;
+			
 		case SWIRL:
+			which = 2;
 			swirl();
+			
 			break;
 	}
+	
+	angvel_after = getAngVel();
+	
+	stats.updateContributions(angvel_after-angvel_before, which);
 	
 	
 }
@@ -349,6 +366,8 @@ void Disks::swirl(){
 
 double Disks::squareSum(){
 	
+	
+	//This method isn't used anymore, angvel is calculated differently now
 	double sum = 0;
 	
 	for(int i=0; i<num_of_disks; i++){
@@ -365,15 +384,20 @@ double Disks::squareSum(){
 double Disks::getAngVel(){
 	
 	
-	double sum = squareSum();
-	double angvel = 0;
+	double len;
 	
+	double angvel = 0;
+	vec CoM = centerOfMass();
+	vec CoM_vel = centerOfMassVel();
 	for(int i=0; i<num_of_disks; i++) {
-		double a = disks[i].pos[0] - boundpos[0];
-		double b = disks[i].pos[1] - boundpos[1];
-		angvel += a * (disks[i].vel[1]-boundvel[1]) - b * (disks[i].vel[0]-boundvel[0]);
+		double r1 = disks[i].pos[0] - CoM.a[0];
+		double r2 = disks[i].pos[1] - CoM.a[1];
+		double v1 = disks[i].vel[0] - CoM_vel.a[0];
+		double v2 = disks[i].vel[1] - CoM_vel.a[1];
+		double norm = r1*r1 + r2*r2;
+		angvel +=  (r1*v2 - r2*v1)/norm;
 	}
-	return angvel / sum;
+	return angvel / num_of_disks;
 	
 }
 
@@ -390,23 +414,38 @@ vec Disks::centerOfMass(){
 }
 
 
-double Disks::getAngVelVariance(double mean){
-	vec c = centerOfMass();
-	double sum = squareSum();
-	double angvelvar = 0;
-	for(int i=0; i<num_of_disks; i++) {
-		double a = disks[i].pos[0] - c.a[0];
-		double b = disks[i].pos[1] - c.a[1];
-		double dist = pow(a,2) + pow(b,2);
-		double cross = a * disks[i].vel[1] - b * disks[i].vel[0];
-		angvelvar += pow(cross,2)/dist;
+vec Disks::centerOfMassVel(){
+	double a = 0;
+	double b = 0;
+	for(int i=0; i<num_of_disks; i++){
+		a += disks[i].vel[0];
+		b += disks[i].vel[1];
 	}
-	return sqrt(  (angvelvar / sum) - pow(mean,2) );
+	a = a / num_of_disks;
+	b = b / num_of_disks;
+	return vec(a,b);
+}
+
+
+double Disks::getAngVelVariance(double mean){
+	return 0;
+	// This needs rewriting based on new angvel formula
+//	vec c = centerOfMass();
+//	double sum = squareSum();
+//	double angvelvar = 0;
+//	for(int i=0; i<num_of_disks; i++) {
+//		double a = disks[i].pos[0] - c.a[0];
+//		double b = disks[i].pos[1] - c.a[1];
+//		double dist = pow(a,2) + pow(b,2);
+//		double cross = a * disks[i].vel[1] - b * disks[i].vel[0];
+//		angvelvar += pow(cross,2)/dist;
+//	}
+//	return sqrt(  (angvelvar / sum) - pow(mean,2) );
 }
 
 void Disks::printStats(){
 	
-	
+	stats.printHeatMap();
 	//Insert your favorite print function here.
 }
 

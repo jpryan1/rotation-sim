@@ -7,9 +7,10 @@
 #include <cmath>
 #include <string.h>
 
-#define HEATMAP_BINS 30
+#define HEATMAP_BINS 100
 #define QUIVER_BINS 20
 #define DENSITY_BINS 100
+#define COLORWHEEL_BINS 100
 
 class Stats{
 	public:
@@ -18,15 +19,16 @@ class Stats{
 	
 		//Update ALL stats based on disk pos/vels and boundary pos/vels and time passed
 		void update(Disk* d, double* b,double* bv, double time);
-	
+		void updateColorwheel(double dif, int disk_ID);
+	void updateContributions(double dif, int which);
 	//Print stats
 		void printRad();
 		void printCoM();
 		void printHeatMap();
 		void printQuiver();
 		void printDensity();
-		
-	
+	void printColorwheel();
+	void printContributions();
 
 	//Keep track of OWN PERSONAL COPY of disks
 		Disk* disks;
@@ -45,6 +47,12 @@ class Stats{
 		int num_of_disks;
 		double boundpos[2];
 		double boundvel[2];
+	double contributions[3];
+	//Colorwheel plot
+	double colorwheel_forces[COLORWHEEL_BINS];
+	int colorwheel_counters[COLORWHEEL_BINS];
+	
+	
 	
 	//Center of Mass
 		double CoM[2];

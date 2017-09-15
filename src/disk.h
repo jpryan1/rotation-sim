@@ -3,6 +3,7 @@
 struct Disk{
 	double pos[2];
 	double vel[2];
+	int ID;
 	double ang;
 	double ang_vel;
 };
