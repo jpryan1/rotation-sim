@@ -236,7 +236,7 @@ void Animation::setProjectionMatrices(){
 	glm::mat4 projection;
 	
 	//View is at z = +8
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -25.0f));
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -27.0f));
 //	view = glm::rotate(view, (float) -(M_PI/8.0), glm::vec3(0.0f, 1.0f, 0.0f));
 	//Projection has 45 degree FoV, aspect ratio given by the window's, and
 	//records only those objects within 0.1f and 100.0f of the "camera"
@@ -318,9 +318,9 @@ void Animation::drawShapes(){
 	
 	
 	if(M_FRAME){
-		m_ball.draw(boundpos[0] + 9.1*cos((M_PI/6.0)*total_time + (M_PI/2.0)) - 55,
-					boundpos[1] + 9.1*sin((M_PI/6.0)*total_time + (M_PI/2.0)) - 40, -99.8);
-		m_ball.draw(0, 9.1, 0.01);
+		m_ball.draw(boundpos[0] + 9.1*cos((M_PI/6.0)*total_time - (M_PI/2.0)) - 55,
+					boundpos[1] + 9.1*sin((M_PI/6.0)*total_time - (M_PI/2.0)) - 40, -99.8);
+		m_ball.draw(0, -9.1, 0.01);
 	}
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);

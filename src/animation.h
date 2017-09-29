@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include "disk.h"
 
-#define M_FRAME 1
+#define M_FRAME 0
 
 class Animation{
 	public:
