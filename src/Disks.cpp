@@ -2,7 +2,7 @@
 
 
 Animation* Disks::animation;
-
+//TODO currentCollisions probably doesn't need to be vector!
 
 
 void Disks::initialize(int N){
@@ -60,6 +60,9 @@ void Disks::updatePositions(double time){
 
 }
 
+/*
+ The following two functions calculate the next time of collision between either a pair of marbles or a marble and the wall
+ */
 
 Collision Disks::nextDiskCollision(Disk& a, Disk& b){
 	double time;
@@ -124,6 +127,10 @@ Collision Disks::nextWallCollision(Disk& a){
 	
 }
 
+
+/*The following four functions look for the next collision to occur by comparing the times
+ of all collisions that will happen in the future
+ */
 void Disks::nextCollisions(std::vector<Collision>& currentCollisions){
 	currentCollisions.clear();
 	checkDiskCollisions( currentCollisions );
@@ -168,6 +175,14 @@ void Disks::checkSwirlCollision( std::vector<Collision>& currentCollisions ){
 	
 }
 
+
+
+/*
+ This function deals with checking whether an event is the next to occur.
+ It checks the event's time against the times of other events that are to take place shortly, 
+ and adds the event if it is at least as soon as the soonest next event.
+ Recall that we are using a vector of events because some events may happen at exactly the same time.
+ */
 void Disks::addCollision(std::vector<Collision>& currentCollisions, Collision& collision){
 	
 	
@@ -193,6 +208,11 @@ void Disks::addCollision(std::vector<Collision>& currentCollisions, Collision& c
 }
 
 
+
+/*
+ The following 4 functions are the processing of events in the simulation, 
+ one function per type of event, and one function to rule them all.
+ */
 
 void Disks::processCollision(Collision& collision){
 	//Obligation here is just to change the trajectories of the affected disks
@@ -360,8 +380,10 @@ void Disks::swirl(){
 
 
 
-
-
+/*
+ The below functions are solely used for collecting data and generating plots
+ 
+ */
 
 
 double Disks::squareSum(){

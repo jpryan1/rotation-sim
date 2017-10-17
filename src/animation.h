@@ -10,6 +10,7 @@
 #include <atomic>
 #include <unistd.h>
 #include "disk.h"
+#include "cross.h"
 
 #define M_FRAME 0
 
@@ -45,10 +46,12 @@ class Animation{
 		GLuint s_VBO, s_VAO, s_EBO, shaderProgram, modelLoc, colorLoc, viewLoc;
 		GLuint b_VBO, b_VAO, b_EBO;
 	GLuint m_VBO, m_VAO, m_EBO;
+	GLuint x_VBO, x_VAO, x_EBO;
 		int width, height;
 		GLFWwindow* window;
 		Circle circle;
 		Circle bound;
+	Cross cross;
 	Circle m_ball;
 		Disk* disks;
 	double boundpos[2];

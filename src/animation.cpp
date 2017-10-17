@@ -139,6 +139,11 @@ void Animation::generateBuffers(){
 	glGenBuffers(1, &m_VBO);
 	glGenBuffers(1, &m_EBO);
 
+	
+	glGenVertexArrays(1, &x_VAO);
+	glGenBuffers(1, &x_VBO);
+	glGenBuffers(1, &x_EBO);
+
 	// Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
 	glBindVertexArray(s_VAO);
 
@@ -153,6 +158,9 @@ void Animation::generateBuffers(){
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//Unbind VAO
 	glBindVertexArray(0);
+	
+	
+	
 	
 	glBindVertexArray(b_VAO);
 	
@@ -187,6 +195,23 @@ void Animation::generateBuffers(){
 
 	
 	
+	
+	
+	glBindVertexArray(x_VAO);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, x_VBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, x_EBO);
+	
+	
+	// Position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//Unbind VAO
+	glBindVertexArray(0);
+	
+
 	
 	
 	
@@ -224,6 +249,18 @@ void Animation::generateShapes(){
 	//Unbind
 	glBindVertexArray(0);
 	
+	
+	
+	
+	glBindVertexArray(x_VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, x_VBO);
+	
+	cross = Cross(0.5);
+	//bound = Circle(9.1);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//Unbind
+	glBindVertexArray(0);
+	
 
 }
 
@@ -250,6 +287,7 @@ void Animation::setProjectionMatrices(){
 	//Give the location of the model uniform to the Sphere class, so that translations can be applied
 	//when Sphere::draw is called.
 	Circle::modelLoc = modelLoc;
+	Cross::modelLoc = modelLoc;
 	// Set the uniforms of the other matrices now - they won't change.
 	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
@@ -312,10 +350,13 @@ void Animation::drawShapes(){
 	
 	
 	
+
+	
+	
+	
 	glBindVertexArray(m_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 	glUniform4f(colorLoc, 1.0f, 0.2f, 0.2f, 1.0f);
-	
 	
 	if(M_FRAME){
 		m_ball.draw(boundpos[0] + 9.1*cos((M_PI/6.0)*total_time - (M_PI/2.0)) - 55,
@@ -330,7 +371,7 @@ void Animation::drawShapes(){
 	
 	glBindVertexArray(s_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, s_VBO);
-	glUniform4f(colorLoc, 0.75f, 0.5f, 0.25f, 1.0f);
+	glUniform4f(colorLoc, 0.3f, 0.3f, 1.0f, 1.0f);
 	if(M_FRAME){
 		
 		for(int i=0; i<num_of_disks; i++){
@@ -355,7 +396,22 @@ void Animation::drawShapes(){
 	}
 	
 
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	
+	
+	
+	glBindVertexArray(x_VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, x_VBO);
+	glUniform4f(colorLoc, 1.0f, 1.0f, 1.0f, 1.0f);
+	if(!M_FRAME){
+		for(int i=0; i<num_of_disks; i++){
+			cross.draw(disks[i].pos[0], disks[i].pos[1], 0.02, disks[i].ang);// disks[i].ang);
+			
+		}
+	}
 	lock.unlock();
+	
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 	
@@ -381,8 +437,9 @@ void Animation::moveDisks(double time){
 		lock.lock();
 		total_time = DELTA_T +total_time;
 		for(int i=0; i<num_of_disks; i++){
-			for(int j=0; j<2; j++){ disks[i].pos[j] += DELTA_T*disks[i].vel[j];
-			
+			for(int j=0; j<2; j++){
+				disks[i].pos[j] += DELTA_T*disks[i].vel[j];
+				disks[i].ang += DELTA_T*disks[i].ang_vel;
 			}
 		}
 		for(int j=0; j<2; j++) boundpos[j] += DELTA_T*boundvel[j];

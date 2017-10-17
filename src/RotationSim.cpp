@@ -113,8 +113,8 @@ void simulation(int NUM_OF_DISKS){
 		//record angvel, add to average
 	}
 	
-	disks.printStats();
-	//std::cout<<(total_ang_vel/NUM_OF_ITERATIONS)<<std::endl;
+//	disks.printStats();
+	std::cout<<(total_ang_vel/NUM_OF_ITERATIONS)<<std::endl;
 
 }
 
