@@ -39,7 +39,7 @@ for i in range(500):
 		dist = (x**2)+(y**2)
 		ang = np.arctan2(y,x)
 		#color with num from bin
-		ang += np.pi
+#		ang += np.pi
 		assert(ang<=2*np.pi and ang>=0)
 		
 		bin = np.floor(ang*(bins/(2.0*np.pi)))

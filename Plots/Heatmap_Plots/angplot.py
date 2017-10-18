@@ -3,6 +3,10 @@ import numpy as np
 import scipy
 from scipy.stats import probplot
 
+font = {'family' : 'normal',
+	'weight' : 'bold',
+	'size'   : 22}
+matplotlib.rc('font', **font)
 
 img = np.empty((110,100))
 for b in range(35,56,2):

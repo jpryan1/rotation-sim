@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 
 import matplotlib.cm as cm
 counter = 1
+fig = plt.figure(figsize=(12,3.5))
 for k in range(30,55,10):
 	
 	plt.subplot(1, 3, counter)
@@ -21,7 +22,7 @@ for k in range(30,55,10):
 	for line in lines:
 		l = line.split(" ")
 		if(len(l)>1):
-			ax.arrow((18.2/20.0)*(19-i) - 9.1, (18.2/20.0)*(19-j) - 9.1, -float(l[0]), -float(l[1]),head_width=0.1)
+			ax.arrow((18.2/20.0)*(19-i) - 9.1, (18.2/20.0)*(19-j) - 9.1, -float(l[0])/2.0, -float(l[1])/2.0,head_width=0.2)
 		j += 1
 		if(j==20):
 			j=0
@@ -35,4 +36,5 @@ for k in range(30,55,10):
 	plt.title("N = "+N)
 
 plt.show()
+fig.savefig("quiver_circle.pdf")
 #plt.legend([red_dot, (red_dot, white_cross)], ["Attr A", "Attr A+B"])
