@@ -33,7 +33,7 @@ class Disks{
 		//Marble/Marble friction parameter
 	const double mu = 1;
 		//Marble/Wall friction parameter
-	const double wmu = 0;//0.1;
+	const double wmu = 10;
 	
 	
 	//Set by the main function in RotationSim.cpp depending on whether we're animating
