@@ -17,7 +17,7 @@ build/%.o: src/%.cpp
 
 
 RotationSim: ${OBJS}
-	g++ -O2 $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(AFLAGS)
+	g++ $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(AFLAGS)
 
 .PHONY: clean
 
