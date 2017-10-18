@@ -23,7 +23,6 @@ class Collision{
 			disks[0] = &a;
 			disks[1] = &b;
 		}
-	
 	//For a collision of one marble with the wall
 		Collision(double t, Disk& a){
 			time = t;

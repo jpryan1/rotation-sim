@@ -23,23 +23,15 @@ class Disks{
 	public:
 	
 	//Constants
-		//Time interval between "swirl collisions"
 		const double swirl_interval = 1;
-		//Radius of boundary
 		const double boundrad = 9.1;
-		//Angle of swirl collision. For example, pi/6 means
-		//the boundary traces a dodecagonal path
 		const double swirl_angle = 3.14159265359 / 6;
-		//Marble/Marble friction parameter
-	const double mu = 1;
-		//Marble/Wall friction parameter
-	const double wmu = 10;
+		const double mu = 10;
+		const double wmu = 10;
 	
-	
-	//Set by the main function in RotationSim.cpp depending on whether we're animating
+		//Set by the main function in RotationSim.cpp depending on
+		//whether we're animating
 		static Animation* animation;
-	
-	
 	
 		Disks(){}
 		~Disks(){
@@ -47,55 +39,49 @@ class Disks{
 				delete [] disks;
 			}
 		}
-	
-		//Sets up disks, reads positions/velocities from file
 		void initialize(int N);
-		//Update positions based on trajectories and time passed
-		void updatePositions(double collisionTime);
-		//Used in animation
-		void draw();
-		//Populate currentCollisions vector with next collisions to take place
-		void nextCollisions(std::vector<Collision>& currentCollisions);
 	
-		//Returns next collision between a,b if there is one
-		Collision nextDiskCollision(Disk& a, Disk& b);
-		//Returns next collision of disk with wall
-		Collision nextWallCollision(Disk& disk);
-	
-		//Iterates through all disks, adds next disk/disk collision
-		void checkDiskCollisions( std::vector<Collision>& currentCollisions );
-		//Iterates through all disks, adds next disk/wall collision
-		void checkWallCollisions( std::vector<Collision>& currentCollisions );
-		//Adds a swirl collision
-		void checkSwirlCollision( std::vector<Collision>& currentCollisions );
+		//		Various stats functions.
+		//
+		void printStats();
+		double getAngVel();
+		vec centerOfMass();
+		vec centerOfMassVel();
 
-		//This function is used by the above three, it adds "collision" to the vector only if
-		//it is the next to occur, otherwise it leaves the vector unchanged.
+	
+	
+	
+		//		FIND NEXT EVENT
+		//
+		void nextCollisions(std::vector<Collision>& currentCollisions);
+		Collision nextDiskCollision(Disk& a, Disk& b);
+		Collision nextWallCollision(Disk& disk);
+		void checkDiskCollisions( std::vector<Collision>& currentCollisions );
+		void checkWallCollisions( std::vector<Collision>& currentCollisions );
+		void checkSwirlCollision( std::vector<Collision>& currentCollisions );
 		void addCollision(std::vector<Collision>& currentCollisions, Collision& collision);
 
-	//Update trajectories for the various collisions. This is where the magic happens
+	
+	
+	
+		//		PROCESS EVENT
+		//
+		void updatePositions(double collisionTime);
+		
 		void processCollision(Collision& collision);
-		void processNormalCollision(Collision& collision);
-		void processWallCollision(Collision& collision);
-		void swirl();
+			void processNormalCollision(Collision& collision);
+			void processWallCollision(Collision& collision);
+			void swirl();
+		
 	
 	
-	//Various stats functions.
-	void printStats();
-	double getAngVel();
-	vec centerOfMass();
-	vec centerOfMassVel();
-
-	double squareSum();
-	double getAngVelVariance(double mean);
 	
-	//The disks!
-	Disk* disks;
+		//The disks!
+		Disk* disks;
 	
 	private:
 	
 		int num_of_disks;
-	
 		Stats stats;
 		double boundpos[2];
 		double boundvel[2];
