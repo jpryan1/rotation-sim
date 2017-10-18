@@ -1,10 +1,10 @@
-CPPFLAGS = -std=c++11 -O2
+CPPFLAGS = -std=c++11 -O2 -MMD
 AFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 LDFLAGS = -std=c++11 `pkg-config --libs lib/glfw3.pc` 
 N=55
 
-SRCS = src/cross.cpp src/Collision.cpp src/circle.cpp src/Disks.cpp src/animation.cpp src/RotationSim.cpp src/stats.cpp
-OBJS = build/cross.o build/Collision.o build/circle.o build/Disks.o build/animation.o build/RotationSim.o build/stats.o build/lib/glew.o
+SRCS = src/cross.cpp src/Collision.cpp src/circle.cpp src/Disks.cpp src/animation.cpp src/RotationSim.cpp src/stats.cpp src/next-event.cpp src/process-event.cpp
+OBJS = build/cross.o build/Collision.o build/circle.o build/Disks.o build/animation.o build/RotationSim.o build/stats.o build/lib/glew.o build/next-event.o build/process-event.o
 
 all: RotationSim
 
@@ -19,6 +19,7 @@ build/%.o: src/%.cpp
 RotationSim: ${OBJS}
 	g++ -O2 $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(AFLAGS)
 
+.PHONY: clean
 
 clean:
 	rm build/*.o
@@ -30,11 +31,4 @@ run:
 	./RotationSim r ${N}
 
 
-
-depend: .depend
-
-.depend: $(SRCS)
-	rm -f ./.depend
-	g++ $(CPPFLAGS) -MM $^ > ./.depend
-
-include .depend
+-include $(OBJS:.o=.d)

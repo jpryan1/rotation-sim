@@ -273,11 +273,11 @@ void Animation::setProjectionMatrices(){
 	glm::mat4 projection;
 	
 	//View is at z = +8
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -27.0f));
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -40.0f));
 //	view = glm::rotate(view, (float) -(M_PI/8.0), glm::vec3(0.0f, 1.0f, 0.0f));
 	//Projection has 45 degree FoV, aspect ratio given by the window's, and
 	//records only those objects within 0.1f and 100.0f of the "camera"
-	projection = glm::perspective(glm::radians(45.0f), (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 200.0f);
+	projection = glm::perspective(glm::radians(45.0f), (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 100.0f);
 	
 	// Get the locations of the shader's uniforms
 	modelLoc = glGetUniformLocation(shaderProgram, "model");
