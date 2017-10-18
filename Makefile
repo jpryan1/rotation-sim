@@ -22,7 +22,7 @@ RotationSim: ${OBJS}
 .PHONY: clean
 
 clean:
-	rm build/*.o
+	rm build/*.o build/*.d
 test:
 	./RotationSim t
 animate:
