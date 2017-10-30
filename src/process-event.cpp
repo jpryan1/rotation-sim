@@ -1,6 +1,12 @@
 #include "Disks.h"
 
 void Disks::updatePositions(double time){
+	if(animation){
+		animation->moveDisks(time);
+		animation->setDisks(disks, boundpos, boundvel);
+		
+	}
+	
 	boundpos[0] += time*boundvel[0];
 	boundpos[1] += time*boundvel[1];
 	for(int i=0; i<num_of_disks; i++){
@@ -12,11 +18,7 @@ void Disks::updatePositions(double time){
 		
 	}
 	
-	if(animation){
-		animation->moveDisks(time);
-		animation->setDisks(disks, boundpos, boundvel);
-		
-	}
+
 	stats.update(disks, boundpos,boundvel, time);
 
 }
