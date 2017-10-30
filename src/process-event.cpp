@@ -66,6 +66,8 @@ void Disks::processNormalCollision(Collision& collision){
 	vec v2 = vec(collision.disks[1]->vel);
 	vec x1 = vec(collision.disks[0]->pos);
 	vec x2 = vec(collision.disks[1]->pos);
+	
+
 	vec unit = x2.minus(x1).times(0.5);
 	double angv1 = s1.ang_vel;
 	double angv2 = s2.ang_vel;
@@ -107,20 +109,20 @@ void Disks::processNormalCollision(Collision& collision){
 	int s0 = (r0.dot(r0unit) > 0 ? 1 : -1);
 	
 	//Part 3c - apply sticking rules
-	double t = (r0.norm())/(4*mu*DELTA);
+	double t = (r0.norm())/(mu*DELTA*2*((1.0/DISK_MASS)+(1.0/DISK_MOMENT)));
 	if(mu==0){
 		t=0;
 	}
 	t = fmin(t, 1);
 	double impulse = mu*s0*DELTA*t;
 	
-	vec newPar1 = par1.minus(r0unit.times(impulse));
-	vec newPar2 = par2.add(r0unit.times(impulse));
+	vec newPar1 = par1.minus(r0unit.times(impulse/DISK_MASS));
+	vec newPar2 = par2.add(r0unit.times(impulse/DISK_MASS));
 	
 	memcpy(collision.disks[0]->vel, newPar1.add(newPerp1).a, 2*sizeof(double));
 	memcpy(collision.disks[1]->vel, newPar2.add(newPerp2).a, 2*sizeof(double));
-	angv1 -= impulse;
-	angv2 -= impulse;
+	angv1 -= impulse/DISK_MOMENT;
+	angv2 -= impulse/DISK_MOMENT;
 	collision.disks[0]->ang_vel = angv1;
 	collision.disks[1]->ang_vel = angv2;
 }
@@ -142,24 +144,21 @@ void Disks::processWallCollision(Collision& collision){
 	vec par = newVel.minus(perp);
 	perp = perp.times(-1); //bonk
 	double DELTA = 2*perp.norm();
-	double t;
 	
 
 	
 	vec r0unit(-rad.a[1], rad.a[0]);
 	vec r0 = par.add(r0unit.times(angv));
 	int s0 = (r0.dot(r0unit) > 0 ? 1 : -1);
+	double t = (r0.norm())/(wmu*DELTA*((1.0/DISK_MASS)+(1.0/DISK_MOMENT)));
 	if(wmu==0){
 		t=0;
-	}else{
-		t = (r0.norm())/(2*wmu*DELTA);
-	
 	}
 	t=fmin(t,1);
 	double impulse = wmu*s0*DELTA*t;
 	
-	vec newPar = par.minus(r0unit.times(impulse));
-	angv -= impulse;
+	vec newPar = par.minus(r0unit.times(impulse/DISK_MASS));
+	angv -= impulse/DISK_MOMENT;
 	
 	perp = perp.add(newPar);
 	perp = perp.add(bv);

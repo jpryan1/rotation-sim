@@ -14,6 +14,8 @@
 #include "animation.h"
 #include "Collision.h"
 
+#define DISK_MASS 1
+#define DISK_MOMENT 100000
 
 class Collision;
 
