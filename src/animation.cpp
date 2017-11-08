@@ -431,22 +431,52 @@ void Animation::setDisks(Disk* d, double* b, double* v){
 }
 
 void Animation::moveDisks(double time){
+	
 	double start = 0;
 	double next_time = total_time  + time;
-	while(start<time){
+	memcpy(disks_buffer, disks, num_of_disks*sizeof(Disk));
+	double boundbuf0 = boundpos[0];
+	double boundbuf1 = boundpos[1];
+	int steps = time/DELTA_T;
+	for(int step = 0; step<steps; step++){
+		double t = (steps-step+0.0)/steps;
+		t = (1-t)*time;
 		lock.lock();
+		//for M-frame
 		total_time = DELTA_T +total_time;
 		for(int i=0; i<num_of_disks; i++){
+			
 			for(int j=0; j<2; j++){
-				disks[i].pos[j] += DELTA_T*disks[i].vel[j];
-				disks[i].ang += DELTA_T*disks[i].ang_vel;
+				disks[i].pos[j] = disks_buffer[i].pos[j] + disks[i].vel[j]*t;
+				disks[i].ang = disks_buffer[i].ang + disks[i].ang_vel*t;
+				
 			}
 		}
-		for(int j=0; j<2; j++) boundpos[j] += DELTA_T*boundvel[j];
+		
+		boundpos[0] = boundbuf0 + t*boundvel[0];
+		boundpos[1] = boundbuf1 + t*boundvel[1];
+		
 		lock.unlock();
-		start+= DELTA_T;
+		
 	}
 	total_time = next_time;
+
+//	double start = 0;
+//	double next_time = total_time  + time;
+//	while(start<time){
+//		lock.lock();
+//		total_time = DELTA_T +total_time;
+//		for(int i=0; i<num_of_disks; i++){
+//			for(int j=0; j<2; j++){
+//				disks[i].pos[j] += DELTA_T*disks[i].vel[j];
+//				disks[i].ang += DELTA_T*disks[i].ang_vel;
+//			}
+//		}
+//		for(int j=0; j<2; j++) boundpos[j] += DELTA_T*boundvel[j];
+//		lock.unlock();
+//		start+= DELTA_T;
+//	}
+//	total_time = next_time;
 	
 }
 

@@ -1,9 +1,11 @@
 #include "Disks.h"
 
 void Disks::updatePositions(double time){
+	
+	
 	if(animation){
-		animation->moveDisks(time);
 		animation->setDisks(disks, boundpos, boundvel);
+		animation->moveDisks(time);
 		
 	}
 	
