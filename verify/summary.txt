@@ -1,0 +1,89 @@
+Case 1
+No wall motion:
+Initial total linear momentum 0.000000 0.000000 --- Final total linear momentum 0.000000 0.000000
+Initial difference of angular momenta 0.000000 --- Final difference of angular momenta 0.000000
+Initial total linear momentum 0.597052 -2.967743 --- Final total linear momentum 0.597052 -2.967743
+Initial difference of angular momenta -0.185185 --- Final difference of angular momenta -0.185185
+Initial total linear momentum -1.343418 0.396617 --- Final total linear momentum -1.343418 0.396617
+Initial difference of angular momenta 0.377321 --- Final difference of angular momenta 0.377321
+Initial total linear momentum -0.202179 -0.632367 --- Final total linear momentum -0.202179 -0.632367
+Initial difference of angular momenta 0.650565 --- Final difference of angular momenta 0.650565
+Initial total linear momentum -2.064613 -1.065097 --- Final total linear momentum -2.064613 -1.065097
+Initial difference of angular momenta 0.087926 --- Final difference of angular momenta 0.087926
+Initial total linear momentum -0.442335 0.894620 --- Final total linear momentum -0.442335 0.894620
+Initial difference of angular momenta 0.092555 --- Final difference of angular momenta 0.092555
+
+With wall motion:
+Initial total linear momentum 0.000000 0.000000 --- Final total linear momentum 0.000000 0.000000
+Initial difference of angular momenta 0.000000 --- Final difference of angular momenta 0.000000
+Initial total linear momentum -3.668622 -2.127284 --- Final total linear momentum -3.668622 -2.127284
+Initial difference of angular momenta -0.233934 --- Final difference of angular momenta -0.233934
+Initial total linear momentum 0.863385 1.487799 --- Final total linear momentum 0.863385 1.487799
+Initial difference of angular momenta -0.263947 --- Final difference of angular momenta -0.263947
+Initial total linear momentum 0.661998 0.946610 --- Final total linear momentum 0.661998 0.946610
+Initial difference of angular momenta 0.379152 --- Final difference of angular momenta 0.379152
+Initial total linear momentum -4.505259 -0.180944 --- Final total linear momentum -4.505259 -0.180944
+Initial difference of angular momenta -0.754943 --- Final difference of angular momenta -0.754943
+Initial total linear momentum 0.621875 -4.003050 --- Final total linear momentum 0.621875 -4.003050
+Initial difference of angular momenta -0.275197 --- Final difference of angular momenta -0.275197
+
+Case 2:
+No wall motion:
+Initial total linear momentum 0.000000 0.000000 --- Final total linear momentum 0.000000 0.000000
+Initial difference of angular momenta 0.000000 --- Final difference of angular momenta 0.000000
+Initial total linear momentum 0.010865 0.028844 --- Final total linear momentum 0.010865 0.028844
+Initial difference of angular momenta 0.007702 --- Final difference of angular momenta 0.007702
+Initial total linear momentum -0.039347 0.130294 --- Final total linear momentum -0.039347 0.130294
+Initial difference of angular momenta 0.044302 --- Final difference of angular momenta 0.044302
+Initial total linear momentum 0.109814 0.034098 --- Final total linear momentum 0.109814 0.034098
+Initial difference of angular momenta 0.066866 --- Final difference of angular momenta 0.066866
+Initial total linear momentum -0.187157 0.203724 --- Final total linear momentum -0.187157 0.203724
+Initial difference of angular momenta 0.096329 --- Final difference of angular momenta 0.096329
+Initial total linear momentum 0.177006 0.002376 --- Final total linear momentum 0.177006 0.002376
+Initial difference of angular momenta 0.099936 --- Final difference of angular momenta 0.099936
+
+With wall motion:
+Initial total linear momentum 0.000000 0.000000 --- Final total linear momentum 0.000000 0.000000
+Initial difference of angular momenta 0.000000 --- Final difference of angular momenta 0.000000
+Initial total linear momentum 0.439151 -0.083635 --- Final total linear momentum 0.439151 -0.083635
+Initial difference of angular momenta -0.208854 --- Final difference of angular momenta -0.208854
+Initial total linear momentum -1.161554 0.520791 --- Final total linear momentum -1.161554 0.520791
+Initial difference of angular momenta -0.567916 --- Final difference of angular momenta -0.567916
+Initial total linear momentum -0.746485 -1.584843 --- Final total linear momentum -0.746485 -1.584843
+Initial difference of angular momenta -0.669399 --- Final difference of angular momenta -0.669399
+Initial total linear momentum 0.271519 0.771632 --- Final total linear momentum 0.271519 0.771632
+Initial difference of angular momenta -0.104991 --- Final difference of angular momenta -0.104991
+Initial total linear momentum -0.114256 1.225623 --- Final total linear momentum -0.114256 1.225623
+Initial difference of angular momenta -0.143598 --- Final difference of angular momenta -0.143598
+
+
+Case 3:
+No wall motion:
+Initial total linear momentum 0.000000 0.000000 --- Final total linear momentum 0.000000 0.000000
+Initial difference of angular momenta 3.000000 --- Final difference of angular momenta 3.000000
+Initial total linear momentum 0.698306 -0.531696 --- Final total linear momentum 0.698306 -0.531696
+Initial difference of angular momenta 1.421416 --- Final difference of angular momenta 1.421416
+Initial total linear momentum -1.506888 0.097575 --- Final total linear momentum -1.506888 0.097575
+Initial difference of angular momenta 0.762072 --- Final difference of angular momenta 0.762072
+Initial total linear momentum 1.332062 -0.813362 --- Final total linear momentum 1.332062 -0.813362
+Initial difference of angular momenta -0.134613 --- Final difference of angular momenta -0.134613
+Initial total linear momentum 0.837389 0.883542 --- Final total linear momentum 0.837389 0.883542
+Initial difference of angular momenta 0.265718 --- Final difference of angular momenta 0.265718
+Initial total linear momentum -1.028694 -1.226836 --- Final total linear momentum -1.028694 -1.226836
+Initial difference of angular momenta 0.131644 --- Final difference of angular momenta 0.131644
+
+With wall motion:
+Initial total linear momentum 0.000000 0.000000 --- Final total linear momentum 0.000000 0.000000
+Initial difference of angular momenta 3.000000 --- Final difference of angular momenta 3.000000
+Initial total linear momentum -0.966565 -1.097169 --- Final total linear momentum -0.966565 -1.097169
+Initial difference of angular momenta 1.878684 --- Final difference of angular momenta 1.878684
+Initial total linear momentum -4.989101 -0.171765 --- Final total linear momentum -4.989101 -0.171765
+Initial difference of angular momenta 0.435704 --- Final difference of angular momenta 0.435704
+Initial total linear momentum -2.020258 -1.074008 --- Final total linear momentum -2.020258 -1.074008
+Initial difference of angular momenta 0.356197 --- Final difference of angular momenta 0.356197
+Initial total linear momentum 0.610164 4.368642 --- Final total linear momentum 0.610164 4.368642
+Initial difference of angular momenta -0.772675 --- Final difference of angular momenta -0.772675
+Initial total linear momentum 0.071092 -1.968698 --- Final total linear momentum 0.071092 -1.968698
+Initial difference of angular momenta -0.787120 --- Final difference of angular momenta -0.787120
+
+
