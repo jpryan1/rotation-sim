@@ -27,10 +27,40 @@ void Disks::updatePositions(double time){
 
 void Disks::processCollision(Collision& collision){
 	//Obligation here is just to change the trajectories of the affected disks
+
+
+
+
 	double angvel_before, angvel_after;
 	int which;
 	
+
+
+
+
+	//This is for measuring to what extent the wall collisions and disk collisions
+	//are affecting the overall angular momentum
 	angvel_before = getAngVel();
+
+
+//This is a check to make sure that we are conserving momentum in our equations
+
+	double p_x_i, p_y_i, p_x_f, p_y_f;
+	double a_i, a_f;
+
+	if(collision.getType()==NORMAL){
+
+		Disk* a = collision.disks[0];
+		Disk* b = collision.disks[1];
+
+		a_i = a->ang_vel - b->ang_vel;
+
+		p_x_i = a->vel[0] + b->vel[0];
+		p_y_i = a->vel[1] + b->vel[1];
+
+
+	}
+
 	
 	switch(collision.getType()){
 		case NORMAL:
@@ -52,7 +82,23 @@ void Disks::processCollision(Collision& collision){
 			
 			break;
 	}
-	
+
+
+
+
+	if(collision.getType()==NORMAL){
+
+		Disk* a = collision.disks[0];
+		Disk* b = collision.disks[1];
+		a_f = a->ang_vel - b->ang_vel;
+
+		p_x_f = a->vel[0] + b->vel[0];
+		p_y_f = a->vel[1] + b->vel[1];
+
+		printf("Initial total linear momentum %f %f --- Final total linear momentum %f %f\nInitial difference of angular momenta %f --- Final difference of angular momenta %f\n", p_x_i, p_y_i, p_x_f, p_y_f, a_i, a_f);
+	}
+
+
 	angvel_after = getAngVel();
 	
 	stats.updateContributions(angvel_after-angvel_before, which);

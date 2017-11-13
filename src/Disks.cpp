@@ -4,14 +4,100 @@
 Animation* Disks::animation;
 //TODO currentCollisions probably doesn't need to be vector!
 
+#define TEST_CASE 3
+
+
+void Disks::initialize_test_case(){
+
+
+	this->num_of_disks = 2;
+	disks = new Disk[2];
+	//Initialize boundary variables
+	this->boundpos[0] = 0;
+	this->boundpos[1] = 0;
+	this->boundvel[0] = 0.5;//0.5;
+	this->boundvel[1] = 0;
+	this->swirl_time=0;
+
+
+	disks[0].ID = 0;
+	disks[1].ID = 1;
+
+	disks[0].pos[0] = -6;
+	disks[1].pos[0] = 4;
+
+	disks[0].vel[0] = 1;
+	disks[0].vel[1] = 0;
+	disks[1].vel[0] = -1;
+	disks[1].vel[1] = 0;
+
+	disks[0].ang = 0;
+	disks[1].ang = 0;
+
+	disks[1].pos[1] = 0;
+
+//pos vel ang angvel
+	switch(TEST_CASE){
+
+		case 1:
+			disks[0].pos[1] = 0;
+
+			disks[0].ang_vel = 3;
+			disks[1].ang_vel = 3;
+
+			break;
+
+		case 2:
+
+			disks[0].pos[1] = 0.5;
+
+			disks[0].ang_vel = 0;
+			disks[1].ang_vel = 0;
+			break;
+
+
+		case 3:
+
+			disks[0].pos[1] = 0.5;
+
+			disks[0].ang_vel = 3;
+			disks[1].ang_vel = 0;
+			break;
+
+
+		default:
+			exit(0);
+
+
+	}
+
+	if(animation){
+		animation->setDisks(disks, boundpos, boundvel);
+		animation->notReady = false;
+	}
+
+}
+
+
+
+
+
+
+
 
 void Disks::initialize(int N){
+
+
+	if(TEST_CASE){
+		initialize_test_case();
+		return;
+	}
 	this->num_of_disks = N;
 	disks = new Disk[N];
 	//Initialize boundary variables
 	this->boundpos[0] = 0;
 	this->boundpos[1] = 0;
-	this->boundvel[0] = 2;//0.5;
+	this->boundvel[0] = 0.5;
 	this->boundvel[1] = 0;
 	this->swirl_time=0;
 	
