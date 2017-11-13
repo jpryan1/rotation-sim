@@ -1,2 +1,43 @@
 ./RotationSim a 2
-Makefile:32: recipe for target 'animate' failed
+Initial total linear momentum 0.000000 0.000000 --- Final total linear momentum 0.000000 0.000000
+Initial difference of angular momenta 0.000000 --- Final difference of angular momenta 0.000000
+Initial total linear momentum 0.010865 0.028844 --- Final total linear momentum 0.010865 0.028844
+Initial difference of angular momenta 0.007702 --- Final difference of angular momenta 0.007702
+Initial total linear momentum -0.039347 0.130294 --- Final total linear momentum -0.039347 0.130294
+Initial difference of angular momenta 0.044302 --- Final difference of angular momenta 0.044302
+Initial total linear momentum 0.109814 0.034098 --- Final total linear momentum 0.109814 0.034098
+Initial difference of angular momenta 0.066866 --- Final difference of angular momenta 0.066866
+Initial total linear momentum -0.187157 0.203724 --- Final total linear momentum -0.187157 0.203724
+Initial difference of angular momenta 0.096329 --- Final difference of angular momenta 0.096329
+Initial total linear momentum 0.177006 0.002376 --- Final total linear momentum 0.177006 0.002376
+Initial difference of angular momenta 0.099936 --- Final difference of angular momenta 0.099936
+Initial total linear momentum -0.219677 0.117175 --- Final total linear momentum -0.219677 0.117175
+Initial difference of angular momenta 0.081781 --- Final difference of angular momenta 0.081781
+Initial total linear momentum 0.697836 0.121773 --- Final total linear momentum 0.697836 0.121773
+Initial difference of angular momenta -0.171329 --- Final difference of angular momenta -0.171329
+Initial total linear momentum -0.503641 -0.405346 --- Final total linear momentum -0.503641 -0.405346
+Initial difference of angular momenta -0.109617 --- Final difference of angular momenta -0.109617
+Initial total linear momentum 0.257745 -0.323602 --- Final total linear momentum 0.257745 -0.323602
+Initial difference of angular momenta -0.004281 --- Final difference of angular momenta -0.004281
+Initial total linear momentum -0.306888 -0.146221 --- Final total linear momentum -0.306888 -0.146221
+Initial difference of angular momenta 0.004618 --- Final difference of angular momenta 0.004618
+Initial total linear momentum 0.407387 -0.071108 --- Final total linear momentum 0.407387 -0.071108
+Initial difference of angular momenta 0.016643 --- Final difference of angular momenta 0.016643
+Initial total linear momentum -0.002941 -0.236516 --- Final total linear momentum -0.002941 -0.236516
+Initial difference of angular momenta 0.028651 --- Final difference of angular momenta 0.028651
+Initial total linear momentum 0.187627 -0.095364 --- Final total linear momentum 0.187627 -0.095364
+Initial difference of angular momenta 0.057761 --- Final difference of angular momenta 0.057761
+Initial total linear momentum -0.066086 0.129298 --- Final total linear momentum -0.066086 0.129298
+Initial difference of angular momenta 0.039360 --- Final difference of angular momenta 0.039360
+Initial total linear momentum 0.120292 -0.090268 --- Final total linear momentum 0.120292 -0.090268
+Initial difference of angular momenta 0.036390 --- Final difference of angular momenta 0.036390
+Initial total linear momentum 0.023187 -0.145404 --- Final total linear momentum 0.023187 -0.145404
+Initial difference of angular momenta 0.006296 --- Final difference of angular momenta 0.006296
+Initial total linear momentum 0.050289 0.076142 --- Final total linear momentum 0.050289 0.076142
+Initial difference of angular momenta 0.015224 --- Final difference of angular momenta 0.015224
+Initial total linear momentum -0.066986 -0.103277 --- Final total linear momentum -0.066986 -0.103277
+Initial difference of angular momenta -0.001256 --- Final difference of angular momenta -0.001256
+Initial total linear momentum 0.111274 0.074610 --- Final total linear momentum 0.111274 0.074610
+Initial difference of angular momenta -0.006325 --- Final difference of angular momenta -0.006325
+Initial total linear momentum -0.050868 0.020758 --- Final total linear momentum -0.050868 0.020758
+Initial difference of angular momenta -0.005365 --- Final difference of Makefile:32: recipe for target 'animate' failed
