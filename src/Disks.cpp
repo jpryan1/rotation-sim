@@ -34,8 +34,8 @@ void Disks::initialize(int N){
 	}
 	
 	
-	stats.initialize(N);
-	stats.update(disks, boundpos,boundvel, -1);
+//	stats.initialize(N);
+//	stats.update(disks, boundpos,boundvel, -1);
 }
 
 

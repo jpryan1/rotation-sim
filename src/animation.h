@@ -3,7 +3,7 @@
 #define  _ANIMATION_H_
 
 #define GLEW_STATIC
-#define DELTA_T 0.0000003
+#define DELTA_T 5e-7
 #include <iostream>
 #include "circle.h"
 #include <mutex>
@@ -21,6 +21,7 @@ class Animation{
 		Animation(int n){
 			num_of_disks = n;
 			disks = new Disk[n];
+			disks_buffer = new Disk[n];
 			notReady = true;
 			drawing = false;
 			boundpos[0] = 0;
@@ -54,6 +55,7 @@ class Animation{
 	Cross cross;
 	Circle m_ball;
 		Disk* disks;
+	Disk* disks_buffer;
 	double boundpos[2];
 	double boundvel[2];
 		int num_of_disks;

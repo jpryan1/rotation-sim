@@ -15,7 +15,7 @@
 #include "Collision.h"
 
 #define DISK_MASS 1
-#define DISK_MOMENT 100000
+#define DISK_MOMENT 1
 
 class Collision;
 
@@ -26,10 +26,10 @@ class Disks{
 	
 	//Constants
 		const double swirl_interval = 1;
-		const double boundrad = 9.1;
+	const double boundrad = 9.1;
 		const double swirl_angle = 3.14159265359 / 6;
-		const double mu = 10;
-		const double wmu = 10;
+	const double mu = 10;
+	const double wmu = 10;
 	
 		//Set by the main function in RotationSim.cpp depending on
 		//whether we're animating

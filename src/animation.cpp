@@ -336,7 +336,7 @@ void Animation::drawShapes(){
 	glUniform4f(colorLoc, 0.8f, 0.8f, 0.8f, 1.0f);
 	if(M_FRAME){
 		bound.draw(0, 0, 0);
-		bound.draw(boundpos[0]-55,boundpos[1]-40,-100);
+		//bound.draw(boundpos[0]-55,boundpos[1]-40,-100);
 		
 	}else{
 		bound.draw(boundpos[0], boundpos[1], 0);
@@ -359,9 +359,9 @@ void Animation::drawShapes(){
 	glUniform4f(colorLoc, 1.0f, 0.2f, 0.2f, 1.0f);
 	
 	if(M_FRAME){
-		m_ball.draw(boundpos[0] + 9.1*cos((M_PI/6.0)*total_time - (M_PI/2.0)) - 55,
-					boundpos[1] + 9.1*sin((M_PI/6.0)*total_time - (M_PI/2.0)) - 40, -99.8);
-		m_ball.draw(0, -9.1, 0.01);
+//		m_ball.draw(boundpos[0] + 9.1*cos((M_PI/6.0)*total_time - (M_PI/2.0)) - 55,
+//					boundpos[1] + 9.1*sin((M_PI/6.0)*total_time - (M_PI/2.0)) - 40, -99.8);
+//		m_ball.draw(0, -9.1, 0.01);
 	}
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
@@ -372,20 +372,21 @@ void Animation::drawShapes(){
 	glBindVertexArray(s_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, s_VBO);
 	glUniform4f(colorLoc, 0.3f, 0.3f, 1.0f, 1.0f);
+	double nx=0,ny=0;
 	if(M_FRAME){
 		
 		for(int i=0; i<num_of_disks; i++){
 		
 			double x = disks[i].pos[0] - boundpos[0];
 			double y = disks[i].pos[1] - boundpos[1];
-			double nx = cos(total_time*(M_PI/6.0)) * x + sin(total_time*(M_PI/6.0)) * y;
-			double ny = -sin(total_time*(M_PI/6.0)) * x + cos(total_time*(M_PI/6.0)) * y;
+			nx = cos(total_time*(M_PI/6.0)) * x + sin(total_time*(M_PI/6.0)) * y;
+			ny = -sin(total_time*(M_PI/6.0)) * x + cos(total_time*(M_PI/6.0)) * y;
 //		
 		circle.draw(nx,
 					 ny,
 					 0.01 );
 			
-			circle.draw(disks[i].pos[0]-55,disks[i].pos[1]-40,-99.9);
+	//		circle.draw(disks[i].pos[0]-55,disks[i].pos[1]-40,-99.9);
 		
 		}
 	}
@@ -407,6 +408,15 @@ void Animation::drawShapes(){
 	if(!M_FRAME){
 		for(int i=0; i<num_of_disks; i++){
 			cross.draw(disks[i].pos[0], disks[i].pos[1], 0.02, disks[i].ang);// disks[i].ang);
+			
+		}
+	}else{
+		for(int i=0; i<num_of_disks; i++){
+			double x = disks[i].pos[0] - boundpos[0];
+			double y = disks[i].pos[1] - boundpos[1];
+			nx = cos(total_time*(M_PI/6.0)) * x + sin(total_time*(M_PI/6.0)) * y;
+			ny = -sin(total_time*(M_PI/6.0)) * x + cos(total_time*(M_PI/6.0)) * y;
+			cross.draw(nx, ny, 0.02, disks[i].ang-total_time*(M_PI/6.0));// disks[i].ang);
 			
 		}
 	}

@@ -47,8 +47,8 @@ snake = [0.523598776 for i in range(5,57)] #pi/6
 
 
 plt.plot(x,d1w1,'-r', label = "All Friction", linewidth=6)
-plt.plot(x, d1w0, '--b', label = "No Wall Friction", linewidth=6)
-plt.plot(x, d0w1, ':g', label = "No Disk Friction", linewidth=6)
+plt.plot(x, d1w0, '--b', label = "Less Wall Friction", linewidth=6)
+plt.plot(x, d0w1, ':g', label = "Less Disk Friction", linewidth=6)
 #plt.plot(x, predicted, '-.m', label = "Predicted", linewidth=6)
 plt.plot(x, zeros, '--k', linewidth=3)
 plt.plot(x, snake, '--k', linewidth=3)
