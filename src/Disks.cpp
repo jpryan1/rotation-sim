@@ -4,7 +4,7 @@
 Animation* Disks::animation;
 //TODO currentCollisions probably doesn't need to be vector!
 
-#define TEST_CASE 3
+#define TEST_CASE 1
 
 
 void Disks::initialize_test_case(){
@@ -15,7 +15,7 @@ void Disks::initialize_test_case(){
 	//Initialize boundary variables
 	this->boundpos[0] = 0;
 	this->boundpos[1] = 0;
-	this->boundvel[0] = 0.5;//0.5;
+	this->boundvel[0] = 0;//0.5;
 	this->boundvel[1] = 0;
 	this->swirl_time=0;
 
