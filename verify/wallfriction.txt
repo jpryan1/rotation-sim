@@ -1,0 +1,2 @@
+./RotationSim a 1
+Makefile:32: recipe for target 'animate' failed
