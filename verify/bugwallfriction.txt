@@ -1,0 +1,54 @@
+Rad vector -0.024008 -0.999712
+Original disc velocity 0.000000 0.000000
+ Original wall velocity 0.433013 0.250000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -0.006250 -0.260249
+Tangent vel -0.426763 0.010249
+Angv is now -0.213443
+New tangent vector -0.213381 0.005124
+New normal vector 0.006250 0.260249
+Final velocity (lab frame) is 0.225881 0.515373
+
+
+
+Rad vector 0.798628 0.601825
+Original disc velocity 0.225881 0.515373
+ Original wall velocity -0.500000 -0.000000
+Ang vel was -0.213443
+Stationary boundary frame now
+ Normal vel 0.710678 0.535548
+Tangent vel 0.015203 -0.020175
+Angv is now -0.119352
+New tangent vector 0.071829 -0.095318
+New normal vector -0.710678 -0.535548
+Final velocity (lab frame) is -1.138849 -0.630866
+
+
+
+Rad vector -0.928240 -0.371981
+Original disc velocity -1.138849 -0.630866
+ Original wall velocity -0.500000 -0.000000
+Ang vel was -0.119352
+Stationary boundary frame now
+ Normal vel -0.768282 -0.307879
+Tangent vel 0.129433 -0.322987
+Angv is now -0.233654
+New tangent vector 0.086915 -0.216887
+New normal vector 0.768282 0.307879
+Final velocity (lab frame) is 0.355197 0.090992
+
+
+
+Rad vector 0.978477 0.206355
+Original disc velocity 0.355197 0.090992
+ Original wall velocity -0.250000 0.433013
+Ang vel was -0.233654
+Stationary boundary frame now
+ Normal vel 0.510367 0.107633
+Tangent vel 0.094829 -0.449654
+Angv is now -0.346599
+New tangent vector 0.071523 -0.339140
+New normal vector -0.510367 -0.107633
+Final velocity (lab frame) is -0.688845 -0.013760
+
