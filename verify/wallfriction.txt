@@ -1,2 +1,453 @@
 ./RotationSim a 1
+Rad vector -0.613784 -0.789474
+Original disc velocity 0.000000 0.000000
+ Original wall velocity 2.000000 0.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -0.753463 -0.969133
+Tangent vel -1.246537 0.969133
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector 0.753463 0.969133
+
+
+Rad vector 0.270214 -0.962800
+Original disc velocity 2.753463 0.969133
+ Original wall velocity -1.000000 1.732051
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.472544 -1.683722
+Tangent vel 3.280919 0.920804
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -0.472544 1.683722
+
+
+Rad vector 0.322216 0.946666
+Original disc velocity -1.472544 3.415773
+ Original wall velocity -1.000000 -1.732051
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 1.521185 4.469219
+Tangent vel -1.993729 0.678604
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -1.521185 -4.469219
+
+
+Rad vector -0.740463 -0.672097
+Original disc velocity -2.521185 -6.201270
+ Original wall velocity 1.732051 -1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -4.920468 -4.466167
+Tangent vel 0.667232 -0.735103
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 4.920468 4.466167
+
+
+Rad vector 0.882968 0.469433
+Original disc velocity 6.652519 3.466167
+ Original wall velocity 1.732051 1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 4.858370 2.582968
+Tangent vel 0.062098 -0.116802
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -4.858370 -2.582968
+
+
+Rad vector -0.421191 -0.906972
+Original disc velocity -3.126319 -1.582968
+ Original wall velocity -1.000000 1.732051
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -1.643577 -3.539201
+Tangent vel -0.482742 0.224182
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 1.643577 3.539201
+
+
+Rad vector 0.446729 0.894669
+Original disc velocity 0.643577 5.271252
+ Original wall velocity -1.732051 -1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 2.980557 5.969197
+Tangent vel -0.604929 0.302055
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector -2.980557 -5.969197
+
+
+Rad vector -0.745881 -0.666079
+Original disc velocity -4.712608 -6.969197
+ Original wall velocity 0.000000 -2.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -5.090579 -4.545941
+Tangent vel 0.377972 -0.423256
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 5.090579 4.545941
+
+
+Rad vector 0.679278 0.733881
+Original disc velocity 5.090579 2.545941
+ Original wall velocity 2.000000 0.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 2.695224 2.911880
+Tangent vel 0.395355 -0.365939
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector -2.695224 -2.911880
+
+
+Rad vector 0.037532 -0.999295
+Original disc velocity -0.695224 -2.911880
+ Original wall velocity -0.000000 2.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.183243 -4.878887
+Tangent vel -0.878467 -0.032994
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -0.183243 4.878887
+
+
+Rad vector 0.448819 0.893623
+Original disc velocity -0.183243 6.878887
+ Original wall velocity -2.000000 -0.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 3.124914 6.221869
+Tangent vel -1.308156 0.657017
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -3.124914 -6.221869
+
+
+Rad vector -0.672225 -0.740347
+Original disc velocity -5.124914 -6.221869
+ Original wall velocity -1.000000 -1.732051
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -4.098483 -4.513817
+Tangent vel -0.026431 0.023999
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 4.098483 4.513817
+
+
+Rad vector 0.249103 0.968477
+Original disc velocity 3.098483 2.781766
+ Original wall velocity 1.732051 -1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.997143 3.876752
+Tangent vel 0.369289 -0.094985
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -0.997143 -3.876752
+
+
+Rad vector -0.098459 -0.995141
+Original disc velocity 0.734907 -4.876752
+ Original wall velocity 1.000000 1.732051
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -0.650106 -6.570709
+Tangent vel 0.385013 -0.038093
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 0.650106 6.570709
+
+
+Rad vector 0.416269 0.909241
+Original disc velocity 1.650106 8.302760
+ Original wall velocity -1.000000 1.732051
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 2.946152 6.435174
+Tangent vel -0.296046 0.135536
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -2.946152 -6.435174
+
+
+Rad vector -0.377375 -0.926060
+Original disc velocity -3.946152 -4.703123
+ Original wall velocity -1.732051 -1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -1.609454 -3.949520
+Tangent vel -0.604647 0.246397
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 1.609454 3.949520
+
+
+Rad vector -0.253803 0.967256
+Original disc velocity -0.122596 2.949520
+ Original wall velocity 1.000000 -1.732051
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -1.221604 4.655592
+Tangent vel 0.099008 0.025979
+Angv is now 0.000000
+New tangent vector -0.000000 0.000000
+New normal vector 1.221604 -4.655592
+
+
+Rad vector -0.082184 -0.996617
+Original disc velocity 2.221604 -6.387642
+ Original wall velocity 1.732051 1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -0.601783 -7.297648
+Tangent vel 1.091336 -0.089994
+Angv is now 0.000000
+New tangent vector 0.000000 -0.000000
+New normal vector 0.601783 7.297648
+
+
+Rad vector 0.267499 0.963558
+Original disc velocity 2.333833 8.297648
+ Original wall velocity -0.000000 2.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 1.790222 6.448563
+Tangent vel 0.543611 -0.150915
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -1.790222 -6.448563
+
+
+Rad vector 0.004220 -0.999991
+Original disc velocity -1.790222 -4.448563
+ Original wall velocity -1.732051 1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.022992 -5.448221
+Tangent vel -0.081164 -0.000343
+Angv is now 0.000000
+New tangent vector 0.000000 -0.000000
+New normal vector -0.022992 5.448221
+
+
+Rad vector 0.027969 0.999609
+Original disc velocity -1.755043 6.448221
+ Original wall velocity -1.000000 -1.732051
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.228113 8.152763
+Tangent vel -0.983156 0.027509
+Angv is now 0.000000
+New tangent vector -0.000000 0.000000
+New normal vector -0.228113 -8.152763
+
+
+Rad vector -0.151462 -0.988463
+Original disc velocity -1.228113 -9.884814
+ Original wall velocity 0.000000 -2.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -1.208647 -7.887796
+Tangent vel -0.019466 0.002983
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 1.208647 7.887796
+
+
+Rad vector -0.181934 0.983311
+Original disc velocity 1.208647 5.887796
+ Original wall velocity 1.732051 -1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -1.249537 6.753446
+Tangent vel 0.726133 0.134351
+Angv is now 0.000000
+New tangent vector -0.000000 0.000000
+New normal vector 1.249537 -6.753446
+
+
+Rad vector 0.084433 -0.996429
+Original disc velocity 2.981588 -7.753446
+ Original wall velocity 1.732051 1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.745345 -8.796169
+Tangent vel 0.504192 0.042723
+Angv is now 0.000000
+New tangent vector 0.000000 -0.000000
+New normal vector -0.745345 8.796169
+
+
+Rad vector 0.157483 0.987522
+Original disc velocity 0.986706 9.796169
+ Original wall velocity -0.000000 2.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 1.236916 7.756267
+Tangent vel -0.250210 0.039902
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -1.236916 -7.756267
+
+
+Rad vector 0.129276 -0.991609
+Original disc velocity -1.236916 -5.756267
+ Original wall velocity -1.732051 1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.874366 -6.706826
+Tangent vel -0.379232 -0.049440
+Angv is now 0.000000
+New tangent vector 0.000000 -0.000000
+New normal vector -0.874366 6.706826
+
+
+Rad vector -0.054343 0.998522
+Original disc velocity -2.606417 7.706826
+ Original wall velocity -1.732051 -1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -0.475039 8.728559
+Tangent vel -0.399327 -0.021733
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector 0.475039 -8.728559
+
+
+Rad vector -0.160869 -0.986976
+Original disc velocity -1.257012 -9.728559
+ Original wall velocity 0.000000 -2.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -1.259623 -7.728134
+Tangent vel 0.002611 -0.000426
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 1.259623 7.728134
+
+
+Rad vector -0.092540 0.995709
+Original disc velocity 1.259623 5.728134
+ Original wall velocity 1.732051 -1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -0.623993 6.714047
+Tangent vel 0.151565 0.014086
+Angv is now 0.000000
+New tangent vector -0.000000 0.000000
+New normal vector 0.623993 -6.714047
+
+
+Rad vector 0.031568 -0.999502
+Original disc velocity 2.356044 -7.714047
+ Original wall velocity 1.732051 1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.275571 -8.725052
+Tangent vel 0.348422 0.011005
+Angv is now 0.000000
+New tangent vector 0.000000 -0.000000
+New normal vector -0.275571 8.725052
+
+
+Rad vector 0.158233 0.987402
+Original disc velocity 1.456480 9.725052
+ Original wall velocity -0.000000 2.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 1.243426 7.759194
+Tangent vel 0.213054 -0.034142
+Angv is now 0.000000
+New tangent vector 0.000000 0.000000
+New normal vector -1.243426 -7.759194
+
+
+Rad vector 0.063072 -0.998009
+Original disc velocity -1.243426 -5.759194
+ Original wall velocity -1.732051 1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.427409 -6.763063
+Tangent vel 0.061216 0.003869
+Angv is now 0.000000
+New tangent vector -0.000000 0.000000
+New normal vector -0.427409 6.763063
+
+
+Rad vector -0.012347 0.999924
+Original disc velocity -2.159460 7.763063
+ Original wall velocity -1.732051 -1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -0.108255 8.767004
+Tangent vel -0.319154 -0.003941
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 0.108255 -8.767004
+
+
+Rad vector -0.145577 -0.989347
+Original disc velocity -1.623796 -9.767004
+ Original wall velocity 0.000000 -2.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -1.153068 -7.836269
+Tangent vel -0.470728 0.069265
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector 1.153068 7.836269
+
+
+Rad vector -0.036675 0.999327
+Original disc velocity 1.153068 5.836269
+ Original wall velocity 1.732051 -1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -0.251331 6.848294
+Tangent vel -0.327652 -0.012025
+Angv is now 0.000000
+New tangent vector 0.000000 -0.000000
+New normal vector 0.251331 -6.848294
+
+
+Rad vector -0.005985 -0.999982
+Original disc velocity 1.983381 -7.848294
+ Original wall velocity 1.732051 1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel -0.052947 -8.846473
+Tangent vel 0.304277 -0.001821
+Angv is now 0.000000
+New tangent vector 0.000000 -0.000000
+New normal vector 0.052947 8.846473
+
+
+Rad vector 0.119309 0.992857
+Original disc velocity 1.784997 9.846473
+ Original wall velocity -0.000000 2.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.954879 7.946226
+Tangent vel 0.830119 -0.099753
+Angv is now 0.000000
+New tangent vector -0.000000 -0.000000
+New normal vector -0.954879 -7.946226
+
+
+Rad vector 0.010022 -0.999950
+Original disc velocity -0.954879 -5.946226
+ Original wall velocity -1.732051 1.000000
+Ang vel was 0.000000
+Stationary boundary frame now
+ Normal vel 0.069686 -6.953316
+Tangent vel 0.707486 0.007090
 Makefile:32: recipe for target 'animate' failed
