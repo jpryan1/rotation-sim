@@ -184,12 +184,20 @@ void Disks::processWallCollision(Collision& collision){
 	double radNorm = rad.norm();
 	rad = rad.times(1/radNorm); //rad is normal.
 	
-	
+
+//	printf("Rad vector %f %f\n", rad.a[0], rad.a[1]);
+
 	vec newVel(s.vel);
+//	printf("Original disc velocity %f %f\n Original wall velocity %f %f\n",
+//		newVel.a[0], newVel.a[1], bv.a[0], bv.a[1]);
+//	printf("Ang vel was %f\n", angv);
 	newVel = newVel.minus(bv);  //now we're in stationary boundary frame of reference
-	
 	vec perp = rad.times(newVel.dot(rad));
+
+//printf("Stationary boundary frame now\n Normal vel %f %f\n", perp.a[0], perp.a[1]);
+
 	vec par = newVel.minus(perp);
+//printf("Tangent vel %f %f\n", par.a[0], par.a[1]);
 	perp = perp.times(-1); //bonk
 	double DELTA = 2*perp.norm();
 	
@@ -207,8 +215,13 @@ void Disks::processWallCollision(Collision& collision){
 	
 	vec newPar = par.minus(r0unit.times(impulse/DISK_MASS));
 	angv -= impulse/DISK_MOMENT;
-	
+//	printf("Angv is now %f\n", angv);
+//	printf("New tangent vector %f %f\n", newPar.a[0], newPar.a[1]);
+//	printf("New normal vector %f %f\n", perp.a[0], perp.a[1]);
+
 	perp = perp.add(newPar);
+
+
 	perp = perp.add(bv);
 	for(int i=0; i<2; i++) collision.disks[0]->vel[i] = perp.a[i];
 	collision.disks[0]->ang_vel = angv;
