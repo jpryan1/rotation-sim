@@ -15,7 +15,7 @@ void simulation(int N);
 int main(int argc, char** argv){
 	
 	//By default, we use 55 disks. The max that we can use with our input file is 56
-	int NUM_OF_DISKS = 55;
+	int NUM_OF_DISKS = 48;
 	std::cout.precision(16);
 	
 	
@@ -91,7 +91,7 @@ void simulation(int NUM_OF_DISKS){
 	double total_ang_vel = 0;
 	double total_time=0;
 	for(int iterations = 0; iterations<NUM_OF_ITERATIONS; iterations++){
-		
+	
 		
 		disks.nextCollisions(currentCollisions);
 		//fill the currentCollisions vector with the next collisions.

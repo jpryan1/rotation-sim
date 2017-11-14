@@ -233,7 +233,7 @@ void Animation::generateShapes(){
 	glBindVertexArray(b_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, b_VBO);
 	
-	bound = Circle(9.1);
+	bound = Circle(8.6);
 	//bound = Circle(9.1);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//Unbind

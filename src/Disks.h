@@ -26,10 +26,10 @@ class Disks{
 	
 	//Constants
 		const double swirl_interval = 1;
-	const double boundrad = 9.1;
+	const double boundrad = 8.6;
 		const double swirl_angle = 3.14159265359 / 6;
 	const double mu = 100;
-	const double wmu = 100;
+	const double wmu = 0.25;
 	
 		//Set by the main function in RotationSim.cpp depending on
 		//whether we're animating
@@ -82,8 +82,7 @@ class Disks{
 		//The disks!
 		Disk* disks;
 	
-	private:
-	
+
 		int num_of_disks;
 		Stats stats;
 		double boundpos[2];
