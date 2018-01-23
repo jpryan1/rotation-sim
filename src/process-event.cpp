@@ -11,6 +11,7 @@ void Disks::updatePositions(double time){
 	
 	boundpos[0] += time*boundvel[0];
 	boundpos[1] += time*boundvel[1];
+	//if(swirl_time==0) printf("Boundary at %f %f\n", boundpos[0], boundpos[1]);
 	for(int i=0; i<num_of_disks; i++){
 		for(int j=0; j<2; j++){
 			disks[i].pos[j] += time*disks[i].vel[j];
@@ -47,19 +48,16 @@ void Disks::processCollision(Collision& collision){
 
 	// double p_x_i, p_y_i, p_x_f, p_y_f;
 	// double a_i, a_f;
-
-	// if(collision.getType()==NORMAL){
-
-	// 	Disk* a = collision.disks[0];
-	// 	Disk* b = collision.disks[1];
-
-	// 	a_i = a->ang_vel - b->ang_vel;
-
-	// 	p_x_i = a->vel[0] + b->vel[0];
-	// 	p_y_i = a->vel[1] + b->vel[1];
-
-
-	// }
+//	double L_1_i, L_2_i, L_1_f, L_2_f, L_i,L_f;
+//	 if(collision.getType()==NORMAL){
+//
+//	 	Disk* a = collision.disks[0];
+//	 	Disk* b = collision.disks[1];
+//	 	L_1_i = a->vel[1]*a->pos[0] - a->vel[0]*a->pos[1] + a->ang_vel;
+//		L_2_i = b->vel[1]*b->pos[0] - b->vel[0]*b->pos[1] + b->ang_vel;
+//		L_i = L_1_i+L_2_i;
+//		 
+//	 }
 
 	
 	switch(collision.getType()){
@@ -85,23 +83,24 @@ void Disks::processCollision(Collision& collision){
 
 
 
-
-	// if(collision.getType()==NORMAL){
-
-	// 	Disk* a = collision.disks[0];
-	// 	Disk* b = collision.disks[1];
-	// 	a_f = a->ang_vel - b->ang_vel;
-
-	// 	p_x_f = a->vel[0] + b->vel[0];
-	// 	p_y_f = a->vel[1] + b->vel[1];
-
-	// 	printf("Initial total linear momentum %f %f --- Final total linear momentum %f %f\nInitial difference of angular momenta %f --- Final difference of angular momenta %f\n", p_x_i, p_y_i, p_x_f, p_y_f, a_i, a_f);
-	// }
+//
+//	 if(collision.getType()==NORMAL){
+//
+//	 	Disk* a = collision.disks[0];
+//	 	Disk* b = collision.disks[1];
+//	 	
+//		 L_1_f = a->vel[1]*a->pos[0] - a->vel[0]*a->pos[1] + a->ang_vel;
+//	 	L_2_f = b->vel[1]*b->pos[0] - b->vel[0]*b->pos[1] + b->ang_vel;
+//		 
+//		 L_f = L_1_f+L_2_f;
+//		 printf("Before %f + %f = %f after %f + %f = %f\n",L_1_i,L_2_i, L_i,
+//				L_1_f, L_2_f,L_f);
+//	 }
 
 
 	angvel_after = getAngVel();
 	
-	stats.updateContributions(angvel_after-angvel_before, which);
+	//stats.updateContributions(angvel_after-angvel_before, which);
 	
 	
 }
@@ -185,19 +184,19 @@ void Disks::processWallCollision(Collision& collision){
 	rad = rad.times(1/radNorm); //rad is normal.
 	
 
-	printf("Rad vector %f %f\n", rad.a[0], rad.a[1]);
+//	printf("Rad vector %f %f\n", rad.a[0], rad.a[1]);
 
 	vec newVel(s.vel);
-	printf("Original disc velocity %f %f\n Original wall velocity %f %f\n",
-		newVel.a[0], newVel.a[1], bv.a[0], bv.a[1]);
-	printf("Ang vel was %f\n", angv);
+//	printf("Original disc velocity %f %f\n Original wall velocity %f %f\n",
+//		newVel.a[0], newVel.a[1], bv.a[0], bv.a[1]);
+//	printf("Ang vel was %f\n", angv);
 	newVel = newVel.minus(bv);  //now we're in stationary boundary frame of reference
 	vec perp = rad.times(newVel.dot(rad));
 
-printf("Stationary boundary frame now\n Normal vel %f %f\n", perp.a[0], perp.a[1]);
+//printf("Stationary boundary frame now\n Normal vel %f %f\n", perp.a[0], perp.a[1]);
 
 	vec par = newVel.minus(perp);
-printf("Tangent vel %f %f\n", par.a[0], par.a[1]);
+//printf("Tangent vel %f %f\n", par.a[0], par.a[1]);
 	perp = perp.times(-1); //bonk
 	double DELTA = 2*perp.norm();
 	
@@ -215,15 +214,15 @@ printf("Tangent vel %f %f\n", par.a[0], par.a[1]);
 	
 	vec newPar = par.minus(r0unit.times(impulse/DISK_MASS));
 	angv -= impulse/DISK_MOMENT;
-	printf("Angv is now %f\n", angv);
-	printf("New tangent vector %f %f\n", newPar.a[0], newPar.a[1]);
-	printf("New normal vector %f %f\n", perp.a[0], perp.a[1]);
+//	printf("Angv is now %f\n", angv);
+//	printf("New tangent vector %f %f\n", newPar.a[0], newPar.a[1]);
+//	printf("New normal vector %f %f\n", perp.a[0], perp.a[1]);
 
 	perp = perp.add(newPar);
 
 
 	perp = perp.add(bv);
-	printf("Final velocity (lab frame) is %f %f\n\n\n\n", perp.a[0], perp.a[1]);
+//	printf("Final velocity (lab frame) is %f %f\n\n\n\n", perp.a[0], perp.a[1]);
 	for(int i=0; i<2; i++) collision.disks[0]->vel[i] = perp.a[i];
 	collision.disks[0]->ang_vel = angv;
 }

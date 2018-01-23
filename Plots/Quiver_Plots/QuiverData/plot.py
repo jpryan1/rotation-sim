@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 counter = 1
 fig = plt.figure(figsize=(12,3.5))
-for k in range(30,55,10):
+for k in range(28,55,10):
 	
 	plt.subplot(1, 3, counter)
 

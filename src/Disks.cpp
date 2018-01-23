@@ -8,14 +8,7 @@ Animation* Disks::animation;
 
 
 
-
-
-
-
-
-
-
-void Disks::initialize(int N){
+void Disks::initialize(int N, int iters){
 
 
 	if(TEST_CASE){
@@ -27,7 +20,7 @@ void Disks::initialize(int N){
 	//Initialize boundary variables
 	this->boundpos[0] = 0;
 	this->boundpos[1] = 0;
-	this->boundvel[0] = 2;
+	this->boundvel[0] = 1;//0.3955357;
 	this->boundvel[1] = 0;
 	this->swirl_time=0;
 	
@@ -43,15 +36,13 @@ void Disks::initialize(int N){
 	}
 	input.close();
 	
+	stats.initialize(N, iters);
 	
 	if(animation){
 		animation->setDisks(disks, boundpos, boundvel);
 		animation->notReady = false;
 	}
 	
-	
-//	stats.initialize(N);
-//	stats.update(disks, boundpos,boundvel, -1);
 }
 
 
@@ -177,7 +168,7 @@ vec Disks::centerOfMassVel(){
 
 void Disks::printStats(){
 	
-	stats.printHeatMap();
+	stats.printDensity();
 	//Insert your favorite print function here.
 }
 

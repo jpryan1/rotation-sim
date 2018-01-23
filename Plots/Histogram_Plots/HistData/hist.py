@@ -6,7 +6,7 @@ from scipy.stats import probplot
 
 img = np.empty((100,100))
 
-f = open("stats30.txt","r")
+f = open("stats28.txt","r")
 lines = f.readlines()
 
 for i in range(100):
@@ -15,13 +15,13 @@ for i in range(100):
 		img[i][99-j] = float(line)
 
 plt.subplot(131)
-plt.title("N=30")
+plt.title("N=28")
 plt.imshow(img)
 plt.colorbar()
 
 img1 = np.empty((100,100))
 
-f = open("stats40.txt","r")
+f = open("stats38.txt","r")
 lines = f.readlines()
 
 for i in range(100):
@@ -30,11 +30,11 @@ for i in range(100):
 		img1[i][99-j] = float(line)
 
 plt.subplot(132)
-plt.title("N=40")
+plt.title("N=38")
 plt.imshow(img1)
 plt.colorbar()
 
-f = open("stats50.txt","r")
+f = open("stats48.txt","r")
 lines = f.readlines()
 img2 = np.empty((100,100))
 
@@ -44,7 +44,7 @@ for i in range(100):
 		img2[i][99-j] = float(line)
 
 plt.subplot(133)
-plt.title("N=50")
+plt.title("N=48")
 plt.imshow(img2)
 plt.colorbar()
 plt.show()

@@ -2,10 +2,10 @@
 #include "stats.h"
 #define PI 3.1415926535897932
 
-void Stats::initialize(int N){
+void Stats::initialize(int N, int iters){
 	disks = new Disk[N];
 	num_of_disks = N;
-	
+	num_iters = iters;
 	//M is originally at bottom in lab frame,
 	//which is 180 degrees from where it is in M-frame
 	M_ang = PI;
@@ -51,7 +51,8 @@ void Stats::update(Disk* d, double* b, double* bv, double time){
 	
 	
 	//Update M_ang
-	M_ang -= time*(PI / 6);
+	M_ang -= time*(PI /(15*0.3955357));
+	
 	if(M_ang<0) M_ang += (2*PI);
 	
 	//Used for CoM calculation
@@ -91,13 +92,13 @@ void Stats::update(Disk* d, double* b, double* bv, double time){
 		
 		
 		//This is for density histogram
-		int m = floor(((disks[i].pos[0]+9.1)/18.2)*DENSITY_BINS);
-		int n = floor(((disks[i].pos[1]+9.1)/18.2)*DENSITY_BINS);
+		int m = floor(((disks[i].pos[0]+8.6)/17.2)*DENSITY_BINS);
+		int n = floor(((disks[i].pos[1]+8.6)/17.2)*DENSITY_BINS);
 		hist[n][m] += 1;
 		
 		
-		m = floor(((disks[i].pos[0]+9.1)/18.2)*QUIVER_BINS);
-		n = floor(((disks[i].pos[1]+9.1)/18.2)*QUIVER_BINS);
+		m = floor(((disks[i].pos[0]+8.6)/17.2)*QUIVER_BINS);
+		n = floor(((disks[i].pos[1]+8.6)/17.2)*QUIVER_BINS);
 		
 		//This is for quiver plot
 		quiver_hist[n][m][0] += disks[i].vel[0];
@@ -113,7 +114,6 @@ void Stats::update(Disk* d, double* b, double* bv, double time){
 	//These numbers are all corresponding to center of masses stats in M-frame
 	CoM[0] += Center0;
 	CoM[1] += Center1;
-	
 	
 	//This is all for heatmap plot
 	for(int i=0; i<num_of_disks; i++){
@@ -146,63 +146,63 @@ void Stats::update(Disk* d, double* b, double* bv, double time){
 	
 }
 
-
-
-void Stats::updateColorwheel(double dif, int disk_ID){
-	Disk disk = disks[disk_ID];
-	double r1 = disk.pos[0];
-	double r2 = disk.pos[1];
-	
-	
-
-	//Find index based on angle
-	double ang = atan2(r2, r1);
-	int ind = floor((ang/(2*PI))*COLORWHEEL_BINS);
-	ind = (ind + 75)%100;
-	
-	
-	colorwheel_forces[ind] += dif;
-	colorwheel_counters[ind] += 1;
-	
-	
-}
-
-void Stats::updateContributions(double dif, int which){
-	contributions[which] += dif;
-}
-
-void Stats::printContributions(){
-
-	for(int i=0; i<3; i++){
-		std::cout<<contributions[i]<<std::endl;
-	}
-}
-
-void Stats::printColorwheel(){
-	for(int i=0; i<COLORWHEEL_BINS; i++){
-		if(colorwheel_counters[i]==0){
-			std::cout<<0<<std::endl;
-		}
-		else{
-			std::cout<<(colorwheel_forces[i]/colorwheel_counters[i])<<std::endl;
-		}
-	}
-	
-	for(int i=0; i<COLORWHEEL_BINS; i++){
-		std::cout<<colorwheel_counters[i]<<std::endl;
-	}
-	
-}
+//
+//
+//void Stats::updateColorwheel(double dif, int disk_ID){
+//	Disk disk = disks[disk_ID];
+//	double r1 = disk.pos[0];
+//	double r2 = disk.pos[1];
+//	
+//	
+//
+//	//Find index based on angle
+//	double ang = atan2(r2, r1);
+//	int ind = floor((ang/(2*PI))*COLORWHEEL_BINS);
+//	ind = (ind + 75)%100;
+//	
+//	
+//	colorwheel_forces[ind] += dif;
+//	colorwheel_counters[ind] += 1;
+//	
+//	
+//}
+//
+//void Stats::updateContributions(double dif, int which){
+//	contributions[which] += dif;
+//}
+//
+//void Stats::printContributions(){
+//
+//	for(int i=0; i<3; i++){
+//		std::cout<<contributions[i]<<std::endl;
+//	}
+//}
+//
+//void Stats::printColorwheel(){
+//	for(int i=0; i<COLORWHEEL_BINS; i++){
+//		if(colorwheel_counters[i]==0){
+//			std::cout<<0<<std::endl;
+//		}
+//		else{
+//			std::cout<<(colorwheel_forces[i]/colorwheel_counters[i])<<std::endl;
+//		}
+//	}
+//	
+//	for(int i=0; i<COLORWHEEL_BINS; i++){
+//		std::cout<<colorwheel_counters[i]<<std::endl;
+//	}
+//	
+//}
 
 void Stats::printRad(){
-	CoM[0] = CoM[0] / 1000000.0;
-	CoM[1] = CoM[1] / 1000000.0;
+	CoM[0] = CoM[0] / num_iters;
+	CoM[1] = CoM[1] / num_iters;
 	double n = sqrt(pow(CoM[0],2) + pow(CoM[1],2));
-	std::cout<<9.1-n<<std::endl;
+	std::cout<<8.6-n<<std::endl;
 }
 void Stats::printCoM(){
-	CoM[0] = CoM[0] / 1000000.0;
-	CoM[1] = CoM[1] / 1000000.0;
+	CoM[0] = CoM[0] / num_iters;
+	CoM[1] = CoM[1] / num_iters;
 	std::cout<<CoM[0]<<" "<<CoM[1]<<std::endl;
 	
 }

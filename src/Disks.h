@@ -15,8 +15,8 @@
 #include "Collision.h"
 
 #define DISK_MASS 1
-#define DISK_MOMENT 2
-
+#define DISK_MOMENT 10
+#define SIDES 30
 class Collision;
 
 
@@ -25,11 +25,11 @@ class Disks{
 	public:
 	
 	//Constants
-		const double swirl_interval = 1;
+	const double swirl_interval = 11.866071 / SIDES;
 	const double boundrad = 8.6;
-		const double swirl_angle = 3.14159265359 / 6;
-	const double mu = 100;
-	const double wmu = 0.25;
+		const double swirl_angle = 3.14159265359 / (SIDES/2.0);
+	const double mu = 1; //1;
+	const double wmu = 1;
 	
 		//Set by the main function in RotationSim.cpp depending on
 		//whether we're animating
@@ -41,7 +41,7 @@ class Disks{
 				delete [] disks;
 			}
 		}
-		void initialize(int N);
+		void initialize(int N, int iters);
 		void initialize_test_case();
 	
 		//		Various stats functions.

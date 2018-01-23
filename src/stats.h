@@ -15,20 +15,20 @@
 class Stats{
 	public:
 		//Initialized the class, fills the arrays with zeroes
-		void initialize(int N);
+		void initialize(int N, int iters);
 	
 		//Update ALL stats based on disk pos/vels and boundary pos/vels and time passed
 		void update(Disk* d, double* b,double* bv, double time);
-		void updateColorwheel(double dif, int disk_ID);
-	void updateContributions(double dif, int which);
+//		void updateColorwheel(double dif, int disk_ID);
+//	void updateContributions(double dif, int which);
 	//Print stats
 		void printRad();
 		void printCoM();
 		void printHeatMap();
 		void printQuiver();
 		void printDensity();
-	void printColorwheel();
-	void printContributions();
+//	void printColorwheel();
+//	void printContributions();
 
 	//Keep track of OWN PERSONAL COPY of disks
 		Disk* disks;
@@ -52,7 +52,7 @@ class Stats{
 	double colorwheel_forces[COLORWHEEL_BINS];
 	int colorwheel_counters[COLORWHEEL_BINS];
 	
-	
+	int num_iters;
 	
 	//Center of Mass
 		double CoM[2];

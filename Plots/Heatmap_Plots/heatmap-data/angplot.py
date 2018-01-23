@@ -10,12 +10,12 @@ font = {'family' : 'normal',
 matplotlib.rc('font', **font)
 
 img = np.empty((110,100))
-for b in range(35,56,2):
+for b in range(28,49,2):
 	f = open("angvel"+str(b)+".txt","r")
 
 	lines = f.readlines()
 	lines = lines[1:]
-	for i in range((b-35)*5,((b-35)*5)+10):
+	for i in range((b-28)*5,((b-28)*5)+10):
 		for j in range(100):
 			line = lines[j]
 			img[109-i][99-j] = float(line)
@@ -34,6 +34,6 @@ axes.set_xlabel("Angular position")
 axes.set_xticks([i*(100.0/6.0) for i in range(7)])
 axes.set_xticklabels([0,60,120,180,240, 300, 360])
 axes.set_yticks([i*(10) for i in range(12)])
-axes.set_yticklabels([i for i in range(55,34,-2)])
+axes.set_yticklabels([i for i in range(48,27,-2)])
 plt.show()
 #

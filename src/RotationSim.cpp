@@ -64,7 +64,7 @@ int main(int argc, char** argv){
 	
 	else if(*(argv[1])=='t'){
 		
-		for(NUM_OF_DISKS=5; NUM_OF_DISKS<= 56; NUM_OF_DISKS+=1){
+		for(NUM_OF_DISKS=5; NUM_OF_DISKS<= 48; NUM_OF_DISKS+=1){
 			simulation(NUM_OF_DISKS);
 		}
 		
@@ -86,7 +86,7 @@ int main(int argc, char** argv){
 void simulation(int NUM_OF_DISKS){
 	std::vector<Collision> currentCollisions;
 	Disks disks;
-	disks.initialize(NUM_OF_DISKS);
+	disks.initialize(NUM_OF_DISKS, NUM_OF_ITERATIONS);
 
 	double total_ang_vel = 0;
 	double total_time=0;
@@ -113,8 +113,8 @@ void simulation(int NUM_OF_DISKS){
 		//record angvel, add to average
 	}
 	
-//	disks.printStats();
-	std::cout<<(total_ang_vel/NUM_OF_ITERATIONS)<<std::endl;
+	disks.printStats();
+//	std::cout<<(total_ang_vel/NUM_OF_ITERATIONS)<<std::endl;
 
 }
 
