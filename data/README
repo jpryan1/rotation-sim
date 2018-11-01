@@ -1,0 +1,5 @@
+High - mu = 1.0
+Medium - mu = 0.5
+Low - mu = 0.1
+
+For some data, there are pairs missing (ex: there is no N=48 in some no_wall_friction data). This is due to the fact that the event-driven simulation breaks down when time steps between events are near machine error, which occurs when discs are practically in constant contact with each other, or the wall. 
